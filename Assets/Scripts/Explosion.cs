@@ -5,7 +5,7 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
 
-    [SerializeField] AudioClip _explosionSFX;
+    AudioClip _explosionSFX;
     [SerializeField] private float _explosionVolume = 0.5f;
     private AudioSource _audioSource;
 

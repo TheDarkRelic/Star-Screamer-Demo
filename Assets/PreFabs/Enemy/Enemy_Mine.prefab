@@ -264,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 7
   _explosionFxPreFab: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
+  _laserSFX: {fileID: 0}
   _laserPreFab: {fileID: 0}
   _laserOffset: 0
   _enemyHealth: 6
@@ -282,4 +283,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f0fd96fc9b6ab40ae0e90367910e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _minSpeed: 2
+  _maxSeed: 6

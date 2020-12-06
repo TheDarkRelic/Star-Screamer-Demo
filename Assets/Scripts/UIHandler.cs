@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UIHandler : MonoBehaviour
+public  class UIHandler : MonoBehaviour
 {
 
     [SerializeField] Sprite[] _liveSprites;

@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public GameObject _laserPreFab;
     public GameObject _tripleShotPreFab;
     public GameObject _shieldVisuals;
+    public GameObject _missileOptionsPreFab;
+
     [SerializeField] GameObject _explosionPreFab;
     [SerializeField] GameObject _leftEngine, _rightEngine;
     [SerializeField] AudioClip _laserSFX;
@@ -34,11 +36,13 @@ public class Player : MonoBehaviour
     bool _isShieldActive = false;
     public bool _isPlayer1 = false;
     public bool _isPlayer2 = false;
+    public static bool _optionsActive;
 
 
 
     void Awake()
     {
+        _optionsActive = false;
         _audioSource = GetComponent<AudioSource>();
         _uiHandler = GameObject.Find("Canvas").GetComponent<UIHandler>();
         _spawner = GameObject.Find("SpawnManager").GetComponent<Spawner>();
@@ -253,6 +257,16 @@ public class Player : MonoBehaviour
         _isDamagable = false;
         yield return new WaitForSeconds(0.5f);
         _isDamagable = true;
+    }
+
+    public void ActivateMissileOptions()
+    {
+        if (_optionsActive)
+            return;
+        
+        _optionsActive = true; 
+        var options = (GameObject)Instantiate(_missileOptionsPreFab, transform.position, Quaternion.identity);
+        options.transform.parent = this.gameObject.transform;
     }
 }
 

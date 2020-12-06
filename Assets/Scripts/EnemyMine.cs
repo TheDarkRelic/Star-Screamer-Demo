@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class EnemyMine : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    private float _speed;
+    [SerializeField] private float _minSpeed;
+    [SerializeField] private float _maxSeed;
     private Transform _target;
 
     void Start()
     {
-        _speed = Random.Range(5, 8);
+        _speed = Random.Range(_minSpeed, _maxSeed);
         _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 

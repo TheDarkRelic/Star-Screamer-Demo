@@ -20,10 +20,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool _canShoot = true;
     [SerializeField] private bool _followsPlayer = true;
     public int enemyID;
+    private GameObject explosion;
 
     private void Awake()
     {
-        _sprite = GetComponent<SpriteRenderer>();
+        _sprite = GetComponentInChildren<SpriteRenderer>();
 
         _audioSource = GetComponent<AudioSource>();
         if (_audioSource == null)
@@ -64,15 +65,14 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.y <= -5f)
         {
-            float randomXpos = Random.Range(-8f, 8f);
+            float randomXpos = Random.Range(-3f, 3f);
             transform.position = new Vector3(randomXpos, 7, 0);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Player player = other.transform.GetComponent<Player>();
             if (player != null)
@@ -85,18 +85,24 @@ public class Enemy : MonoBehaviour
             {
                 _sprite.enabled = false;
             }
-            var explosion = Instantiate(_explosionFxPreFab, transform.position, Quaternion.identity);
+            explosion = Instantiate(_explosionFxPreFab, transform.position, Quaternion.identity);
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject);
         }
-        if (other.tag == "Laser")
+        if (other.CompareTag("Laser") || other.CompareTag("Missile"))
         {
+            if (other.CompareTag("Missile"))
+            {
+                _enemyHealth--;
+            }
             _enemyHealth--;
             Destroy(other.gameObject);
             if (_player == null)
                 return;
+
             if (_enemyHealth > 0)
                 return;
+
             if (this.enemyID == 0)
             {
                 _player.Score(10);
@@ -111,9 +117,14 @@ public class Enemy : MonoBehaviour
             {
                 _sprite.enabled = false;
             }
-            var explosion = Instantiate(_explosionFxPreFab, transform.position, Quaternion.identity);
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject,1.0f);
+
+            if (_enemyHealth < 1)
+            { 
+                explosion = Instantiate(_explosionFxPreFab, transform.position, Quaternion.identity);
+                Destroy(GetComponent<Collider2D>());
+                Destroy(this.gameObject, 0.5f);
+            }
+            
         }
     }
 }
