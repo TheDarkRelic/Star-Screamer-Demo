@@ -7,11 +7,8 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-
-    public static Action OnEnemyDeath;
     public static Action<int> OnEnemyDamage;
 
-    [SerializeField] GameObject _explosionFxPreFab;
     [SerializeField] AudioClip _laserSfx;
     [SerializeField] GameObject _laserPreFab;
     [SerializeField] float _laserOffset;
@@ -24,10 +21,10 @@ public class Enemy : MonoBehaviour
 
     public float speed = 4f;
     float _canFire = -1.0f;
-    private GameObject _explosion;
     public int enemyId;
     public HitDamage hitDamage;
     public AudioSource audioSource;
+    private InstaniateExplosion _explosionFX;
 
     void OnEnable()
     {
@@ -35,6 +32,7 @@ public class Enemy : MonoBehaviour
     }
     private void Awake()
     {
+        _explosionFX = GetComponent<InstaniateExplosion>();
         followsTarget = false;
         speed = Random.Range(_minSpeed, _maxSeed);
     }
@@ -79,15 +77,10 @@ public class Enemy : MonoBehaviour
     }
 
 
-    void DestroyEnemy()
+    public void DestroyEnemy()
     {
-        InstantiateExplosion();
+        _explosionFX.InitExplosion(this.gameObject);
         Destroy(this.gameObject);
-    }
-
-    private void InstantiateExplosion()
-    {
-        _explosion = (GameObject) Instantiate(_explosionFxPreFab, transform.position, Quaternion.identity);
     }
 
     void EnemyDamage(int damageAmount)
@@ -97,7 +90,6 @@ public class Enemy : MonoBehaviour
 
     void OnDisable()
     {
-        OnEnemyDeath -= DestroyEnemy;
         OnEnemyDamage -= EnemyDamage;
     }
 

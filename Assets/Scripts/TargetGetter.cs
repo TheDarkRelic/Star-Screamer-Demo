@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetGetter : MonoBehaviour
 {
     GameObject _player; // Must Set <T>
-    public Transform target;
+    [HideInInspector] public Transform target;
     public Enemy enemy;
     [SerializeField] private float _pingsPerSecond = 10;
 

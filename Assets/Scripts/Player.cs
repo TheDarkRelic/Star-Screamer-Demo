@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public static Action onPlayerDeathAction;
 
     [SerializeField] float _laserOffset = .08f;
     [SerializeField] float _fireRate = .05f;
@@ -17,24 +16,19 @@ public class Player : MonoBehaviour
     public GameObject laserPreFab;
     public GameObject tripleShotPreFab;
 
-    [SerializeField] GameObject _explosionPreFab;
-
     UiHandler _uiHandler;
     public PlayerMovement playerMove;
     public SetBounds playerBounds;
 
     public static bool isTripleShotActive = false;
     public static bool optionsActive;
+    private InstaniateExplosion _explosion;
 
-    void OnEnable()
-    {
-
-    }
     void Awake()
     { 
+        GetExplosion();
         optionsActive = false;
         AssignComponents();
-
     }
 
     void Update()
@@ -76,6 +70,19 @@ public class Player : MonoBehaviour
     {
         isTripleShotActive = true;
     }
+
+    public void DestroyPlayer()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void GetExplosion()
+    {
+       _explosion = GetComponent<InstaniateExplosion>();
+    }
+
+
+
 
 }
 

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6587096378022752362}
   - component: {fileID: 5917448174767052088}
   - component: {fileID: -1716520650091741943}
+  - component: {fileID: -3616425292517825946}
   m_Layer: 0
   m_Name: Enemy_Mine
   m_TagString: Enemy
@@ -264,7 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e0335c2539a3144b060639522540a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionFxPreFab: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
   _laserSfx: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _laserPreFab: {fileID: 6551967064065663251, guid: 6f45be538cf397f418e6344948dd3e37, type: 3}
   _laserOffset: 0
@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 7272245646803182297, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+  enemy: {fileID: -2436343016565033542}
 --- !u!114 &5917448174767052088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,8 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb2da86f0d988546aaeb8c8c4921c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7272245646803182297, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
-  target: {x: 0, y: 0}
+  target: {fileID: 0}
   enemy: {fileID: -2436343016565033542}
   _pingsPerSecond: 10
 --- !u!114 &-1716520650091741943
@@ -320,3 +320,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: -2436343016565033542}
   _targetGetter: {fileID: 5917448174767052088}
+--- !u!114 &-3616425292517825946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630128157025055924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b470cfd9edd384f86157ed36cefca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionFxPreFab: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}

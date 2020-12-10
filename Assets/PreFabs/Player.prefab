@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 411537547}
   - component: {fileID: 411537553}
   - component: {fileID: 411537554}
+  - component: {fileID: 6685094241293693575}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -529,7 +530,6 @@ MonoBehaviour:
   _powerUpTimer: 12
   laserPreFab: {fileID: 60522623825644100, guid: 85f02b2423cb79442903da7890164eef, type: 3}
   tripleShotPreFab: {fileID: 5342792645391605590, guid: 9520d39006294b94f80d45049c975331, type: 3}
-  _explosionPreFab: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
   playerMove: {fileID: 411537553}
   playerBounds: {fileID: 411537554}
 --- !u!82 &745824558
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   explosionPreFab: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
-  _player: {fileID: 0}
+  _player: {fileID: 7272245646803182297}
   isDamageable: 1
 --- !u!114 &411537553
 MonoBehaviour:
@@ -669,6 +669,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa8cdaf7b189774588e8e89c9162aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6685094241293693575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272245646803182116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b470cfd9edd384f86157ed36cefca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionFxPreFab: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
 --- !u!1001 &4077417029101386630
 PrefabInstance:
   m_ObjectHideFlags: 0

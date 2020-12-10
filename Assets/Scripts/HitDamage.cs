@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class HitDamage : MonoBehaviour
 {
-    public static Action OnPlayerDeathAction;
     public int health;
     public GameObject explosionPreFab;
 
     public Player _player;
     public  bool isDamageable = true;
-
+    private InstaniateExplosion _explosionFX;
     void OnEnable()
     {
         TriggerCollider.OnTriggerAction += ProcessDamage;
     }
 
-    void Awake()
+    void Start()
     {
-        OnPlayerDeathAction += DestroyPlayer;
+        _explosionFX = GetComponent<InstaniateExplosion>();
     }
+
     public void ProcessDamage(int damageAmount)
     {
         if (!isDamageable)
@@ -34,15 +34,10 @@ public class HitDamage : MonoBehaviour
             health -= damageAmount;
             if (health < 1)
             {
-                if (OnPlayerDeathAction == null) return;
-                OnPlayerDeathAction();
+                _player.DestroyPlayer();
+                _explosionFX.InitExplosion(this.gameObject);
             }
         }
-    }
-
-    public void DestroyPlayer()
-    {
-        Destroy(this.gameObject);
     }
 
     IEnumerator DamageCoolDown()
