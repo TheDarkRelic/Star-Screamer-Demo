@@ -73,6 +73,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _speed: 10
+  laserVolume: 0.1
+  hitDamage: {fileID: 411537547, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
 --- !u!1 &239993088103522408
 GameObject:
   m_ObjectHideFlags: 0

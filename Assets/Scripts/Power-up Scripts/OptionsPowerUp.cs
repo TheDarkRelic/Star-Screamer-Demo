@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class OptionsPowerUp : MonoBehaviour
 {
-    [SerializeField] private GameObject _explosionFX;
+    [SerializeField] private GameObject _explosionFx;
     private Player _player;
     [SerializeField] private GameObject _missilePreFab;
-
+    public GameObject missileOptionsPreFab;
     [SerializeField] float _fireRate = 2.0f;
     [SerializeField] private float _delay = 1f;
     private GameObject _missile;
     private bool _isActive;
     private float _counter = 1;
-    void Awake()
-    {
-        _isActive = true;
-        _player = FindObjectOfType<Player>();
-    }
+    private HitDamage _hitDamage;
+
 
     void Start()
     {
+        _hitDamage = FindObjectOfType<HitDamage>();
+        Player.optionsActive = true;
+        _isActive = true;
+        _player = FindObjectOfType<Player>();
         StartCoroutine(SpawnMissilesDelay(_delay));
         StartCoroutine(IframeCounter(_counter));
     }
@@ -31,12 +32,12 @@ public class OptionsPowerUp : MonoBehaviour
         {
             if (!_player)
             {
-                _player.Damage(0);
+                _hitDamage.ProcessDamage(0);
             }
 
             if (!_isActive)
             {
-                Instantiate(_explosionFX, transform.position, Quaternion.identity);
+                Instantiate(_explosionFx, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }
@@ -62,4 +63,25 @@ public class OptionsPowerUp : MonoBehaviour
         yield return new WaitForSeconds(counter);
         _isActive = false;
     }
+
+    public void ActivateOptions()
+    {
+        if (Player.optionsActive)
+            return;
+
+        Player.optionsActive = true;
+        ActivateMissilePods();
+    }
+
+    private void ActivateMissilePods()
+    {
+        var options = (GameObject)Instantiate(missileOptionsPreFab, transform.position, Quaternion.identity);
+        ParentToThisTransform(options);
+    }
+
+    private void ParentToThisTransform(GameObject objToParent)
+    {
+        objToParent.transform.parent = this.gameObject.transform;
+    }
+
 }

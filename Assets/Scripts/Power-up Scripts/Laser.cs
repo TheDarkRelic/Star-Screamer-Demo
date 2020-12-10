@@ -7,9 +7,15 @@ public class Laser : MonoBehaviour
 {
     [SerializeField] AudioClip _audioClip;
     [SerializeField] float _speed = 8f;
+    public float laserVolume = 0.2f;
     bool _isEnemyLaser = false;
+    private HitDamage _hitDamage;
 
-
+    void Start()
+    {
+        _hitDamage = FindObjectOfType<HitDamage>();
+        AudioSource.PlayClipAtPoint(_audioClip, Camera.main.transform.position, laserVolume);
+    }
     void Update()
     {
         if (_isEnemyLaser == false)
@@ -57,16 +63,20 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" && _isEnemyLaser == true)
+        if (other.CompareTag("Player") && _isEnemyLaser)
         {
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
                 AudioSource.PlayClipAtPoint(_audioClip, Camera.main.transform.position, 0.8f);
-                player.Damage(1);
-                Destroy(GetComponent<BoxCollider2D>());
-                GetComponentInChildren<SpriteRenderer>().enabled = false;
-                Destroy(this.gameObject, 0.25f);
+                if (_hitDamage != null)
+                {
+                    _hitDamage.ProcessDamage(1);
+                    Destroy(GetComponent<BoxCollider2D>());
+                    GetComponentInChildren<SpriteRenderer>().enabled = false;
+                    Destroy(this.gameObject, 0.25f);
+                }
+                
             }
         }
     }

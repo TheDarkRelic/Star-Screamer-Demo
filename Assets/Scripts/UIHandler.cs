@@ -1,31 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public  class UIHandler : MonoBehaviour
+public  class UiHandler : MonoBehaviour
 {
 
     [SerializeField] Sprite[] _liveSprites;
     [SerializeField] Text _scoreText;
-    public int highScore = 0; //check to see if this needs to be public
+    
     [SerializeField] Text _highScoreText;
     [SerializeField] Image _livesImage;
     [SerializeField] Text _gameOverText;
     [SerializeField] Text _restartText;
-    [SerializeField] Text _MainMenuText;
+    [SerializeField] Text _mainMenuText;
     [SerializeField] Image _pauseMenuCanvas;
     [SerializeField] GameHandler _gameHandler;
-    public bool _gameOver;
-
+    public bool gameOver;
+    private Score _score;
     void Awake()
     {
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        _score = GetComponent<Score>();
         SetGameOverText();
         _scoreText.text = "Score: " + 0;
-        _highScoreText.text = "High Score:" + highScore;
-
+        _highScoreText.text = "High Score:" + Score.highScore;
 
         _gameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
         if (_gameHandler == null)
@@ -36,7 +36,7 @@ public  class UIHandler : MonoBehaviour
 
     private void SetGameOverText()
     {
-        _gameOver = false;
+        gameOver = false;
         _gameOverText.gameObject.SetActive(false);
     }
 
@@ -47,13 +47,18 @@ public  class UIHandler : MonoBehaviour
 
     public void CheckForHighScore(int playerScore)
     {
-        if (playerScore < highScore)
+        if (playerScore < Score.highScore)
             return;;
         {
-            highScore = playerScore;
-            PlayerPrefs.SetInt("HighScore", highScore);
-            _highScoreText.text = "High Score:" + highScore;
+            Score.highScore = playerScore;
+            SetHighScore();
         }
+    }
+
+    private void SetHighScore()
+    {
+        PlayerPrefs.SetInt("HighScore", Score.highScore);
+        _highScoreText.text = "High Score:" + Score.highScore;
     }
 
     public void UpdateLives(int currentLives)
@@ -69,15 +74,15 @@ public  class UIHandler : MonoBehaviour
 
     private void GameOverSequence()
     {
-        _gameOver = true;
+        gameOver = true;
         _restartText.gameObject.SetActive(true);
-        _MainMenuText.gameObject.SetActive(true);
+        _mainMenuText.gameObject.SetActive(true);
         StartCoroutine(FlashGameOverEnabled());
     }
 
     IEnumerator FlashGameOverEnabled()
     {
-        while (_gameOver)
+        while (gameOver)
         {
             _gameOverText.gameObject.SetActive(true);
             yield return new WaitForSeconds(1);

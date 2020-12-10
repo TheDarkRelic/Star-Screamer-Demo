@@ -5,13 +5,16 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject[] enemies = new GameObject[2];
-    [SerializeField] GameObject[] powerups;
+    [SerializeField] GameObject[] _powerups;
     [SerializeField] GameObject _enemyCapsule;
     [SerializeField] GameObject _enemyPreFab;
     [SerializeField] float _minSpawnPowerup = 3f;
     [SerializeField] float _maxSpawnPowerup = 7f;
-    bool _stopSpawning = false;
+    private bool _stopSpawning = false;
     private Enemy _enemy;
+    public bool spawnEnemyShips;
+    public bool spawnEnemyMines;
+    public bool spawnPowerUps;
 
     void Awake()
     {
@@ -23,9 +26,9 @@ public class Spawner : MonoBehaviour
     }
     public void StartSpawning()
     {
-        StartCoroutine(SpawnShipEnemy());
-        StartCoroutine(SpawnMineEnemy());
-        StartCoroutine(SpawnPowerup());
+        if(spawnEnemyShips) StartCoroutine(SpawnShipEnemy());
+        if (spawnEnemyMines)StartCoroutine(SpawnMineEnemy());
+        if (spawnPowerUps)StartCoroutine(SpawnPowerup());
     }
 
     IEnumerator SpawnShipEnemy()
@@ -33,7 +36,7 @@ public class Spawner : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         while (_stopSpawning == false)
         {
-            var randomSpawnTime = Random.Range(2, 6);
+            var randomSpawnTime = Random.Range(4, 8);
             var x = Random.Range(-2.9f, 2.9f);
             var randomSpawnPos = new Vector2(x, this.transform.position.y);
             GameObject newEnemy = (GameObject)Instantiate(enemies[0], randomSpawnPos, Quaternion.identity);
@@ -47,7 +50,7 @@ public class Spawner : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         while (_stopSpawning == false)
         {
-            var randomSpawnTime = Random.Range(5, 8);
+            var randomSpawnTime = Random.Range(6, 9);
             Vector2 randomSpawnPos = new Vector2(Random.Range(-3.2f, 3.2f), 7);
             GameObject newEnemy = Instantiate(enemies[1], randomSpawnPos, Quaternion.identity);
             newEnemy.transform.parent = _enemyCapsule.transform;
@@ -59,11 +62,11 @@ public class Spawner : MonoBehaviour
     {
         while (_stopSpawning == false)
         {
-            var _powerupSpawnRate = Random.Range(_minSpawnPowerup, _maxSpawnPowerup);
-            yield return new WaitForSeconds(_powerupSpawnRate);
+            var powerupSpawnRate = Random.Range(_minSpawnPowerup, _maxSpawnPowerup);
+            yield return new WaitForSeconds(powerupSpawnRate);
             Vector2 positionToSpawn = new Vector2(Random.Range(-2.8f, 2.8f), 7);
-            int randomPowerup = Random.Range(0, 4);
-            Instantiate(powerups[randomPowerup], positionToSpawn, Quaternion.identity);
+            int randomPowerup = Random.Range(0, 1);
+            Instantiate(_powerups[randomPowerup], positionToSpawn, Quaternion.identity);
         }
     }
 

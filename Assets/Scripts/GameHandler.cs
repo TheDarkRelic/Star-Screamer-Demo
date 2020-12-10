@@ -7,22 +7,21 @@ using UnityEngine.UI;
 public class GameHandler : MonoBehaviour
 {
     bool _isGameOver;
-    public bool _isSinglePlayer = true;
+    public bool isSinglePlayer = true;
     [SerializeField] Image _pauseMenuCanvas;
     Animator _pauseAnimator;
 
 
     private void Start()
     {
-        
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name == "Single_Player_Mode")
         {
-            _isSinglePlayer = true;
+            isSinglePlayer = true;
         }
         else
         {
-            _isSinglePlayer = false;
+            isSinglePlayer = false;
         }
 
         _pauseAnimator = GameObject.Find("Pause_Menu_Panel").GetComponent<Animator>();

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7019589149147703531}
   - component: {fileID: 5368264946948275077}
   - component: {fileID: 5939750691140969630}
+  - component: {fileID: 3769098276333699869}
   m_Layer: 0
   m_Name: Enemy_Ship
   m_TagString: Enemy
@@ -47,15 +48,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e0335c2539a3144b060639522540a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
   _explosionFxPreFab: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
-  _laserSFX: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
+  _laserSfx: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _laserPreFab: {fileID: 6551967064065663251, guid: 6f45be538cf397f418e6344948dd3e37, type: 3}
   _laserOffset: 0.5
   _enemyHealth: 8
   _canShoot: 1
   _followsPlayer: 0
-  enemyID: 0
+  _minSpeed: 3
+  _maxSeed: 5
+  speed: 0
+  enemyId: 0
+  hitDamage: {fileID: 411537547, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+  audioSource: {fileID: 5939750691140969630}
 --- !u!50 &7019589149147703531
 Rigidbody2D:
   serializedVersion: 4
@@ -199,6 +204,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3769098276333699869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692190462859662667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7518eafc63a298e40bd67c4f10249b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 7272245646803182297, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
 --- !u!1 &9180908681686267552
 GameObject:
   m_ObjectHideFlags: 0

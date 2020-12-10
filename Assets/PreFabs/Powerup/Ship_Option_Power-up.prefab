@@ -144,8 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463742e577e9bf14fb0bd622d6c7d1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionFX: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
+  _explosionFx: {fileID: 0}
   _missilePreFab: {fileID: 3232888303187180429, guid: 7c7de1a9210d23d4eb6b697d5aee3aa4, type: 3}
+  missileOptionsPreFab: {fileID: 0}
   _fireRate: 1
   _delay: 0.75
 --- !u!1 &6416902804218771074
@@ -292,8 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463742e577e9bf14fb0bd622d6c7d1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionFX: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
+  _explosionFx: {fileID: 0}
   _missilePreFab: {fileID: 8973175161354827321, guid: 69a34eba8805d3f4abea4b8fe90ebcf9, type: 3}
+  missileOptionsPreFab: {fileID: 0}
   _fireRate: 1
   _delay: 0.75
 --- !u!1 &6416902805127349963

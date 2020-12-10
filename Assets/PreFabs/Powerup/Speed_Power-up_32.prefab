@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 5130923810600219487}
   - component: {fileID: 4115438100278545383}
   - component: {fileID: -5919496376155433997}
+  - component: {fileID: 4067524705795947572}
   m_Layer: 0
   m_Name: Speed_Power-up_32
   m_TagString: Powerup
@@ -164,5 +165,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  powerupID: 1
-  _powerupSFX: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
+  _powerupId: 2
+  _powerupSfx: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
+  volume: 0.2
+--- !u!114 &4067524705795947572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763962006018392357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65c3802bf3dfc54eb96b5310e9f7c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedBoost: 5
+  _speedCap: 15

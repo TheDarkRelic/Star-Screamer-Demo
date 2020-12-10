@@ -5,21 +5,12 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
 
-    AudioClip _explosionSFX;
-    [SerializeField] private float _explosionVolume = 0.5f;
-    private AudioSource _audioSource;
-
-    void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
+    public AudioClip explosionSfx;
+    [SerializeField] private float _explosionVolume = 0.3f;
 
     void Start()
     {
-        if (_explosionSFX == null)
-            return;
-
-        _audioSource.PlayOneShot(_explosionSFX, _explosionVolume);
+        AudioSource.PlayClipAtPoint(explosionSfx, Camera.main.transform.position, _explosionVolume);
         Destroy(this.gameObject, 2f);
     }
 

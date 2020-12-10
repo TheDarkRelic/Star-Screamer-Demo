@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OptionsHolder : MonoBehaviour
 {
-    private Powerup[]  optionsCount;
+    private Powerup[]  _optionsCount;
     // Start is called before the first frame update
     void Awake()
     {
@@ -24,7 +24,7 @@ public class OptionsHolder : MonoBehaviour
         var optionRight = GameObject.Find("Ship_Options_Right");
         if (optionLeft == null && optionRight == null)
         {
-            Player._optionsActive = false;
+            Player.optionsActive = false;
             Destroy(this.gameObject);
         }
     }
