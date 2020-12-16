@@ -65,7 +65,7 @@ public class Spawner : MonoBehaviour
             var powerupSpawnRate = Random.Range(_minSpawnPowerup, _maxSpawnPowerup);
             yield return new WaitForSeconds(powerupSpawnRate);
             Vector2 positionToSpawn = new Vector2(Random.Range(-2.8f, 2.8f), 7);
-            int randomPowerup = Random.Range(0, 1);
+            int randomPowerup = Random.Range(0, _powerups.Length);
             Instantiate(_powerups[randomPowerup], positionToSpawn, Quaternion.identity);
         }
     }

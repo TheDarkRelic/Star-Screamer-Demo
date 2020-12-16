@@ -2,19 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HitDamage : MonoBehaviour
 {
+    public static Action<int> OnHitAction;
     public int health;
-    public GameObject explosionPreFab;
+    public bool isDamageable = true;
 
     public Player _player;
-    public  bool isDamageable = true;
     private InstaniateExplosion _explosionFX;
-    void OnEnable()
-    {
-        TriggerCollider.OnTriggerAction += ProcessDamage;
-    }
+    
 
     void Start()
     {
@@ -38,13 +36,21 @@ public class HitDamage : MonoBehaviour
                 _explosionFX.InitExplosion(this.gameObject);
             }
         }
+
+        OnHitAction(health);
     }
 
-    IEnumerator DamageCoolDown()
+    public IEnumerator DamageCoolDown()
     {
         isDamageable = false;
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(1f);
         isDamageable = true;
+    }
+
+    void OnEnable()
+    {
+        TriggerCollider.OnTriggerAction += ProcessDamage;
     }
 
     void OnDisable()

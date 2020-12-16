@@ -11,7 +11,7 @@ public class FollowTarget : MonoBehaviour
         if (_enemy.followsTarget)
         {
             var step = _enemy.speed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, _targetGetter.target.position, step);
+            transform.position = Vector2.MoveTowards(transform.position, _targetGetter._target.position, step);
         }
     }
 }

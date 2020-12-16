@@ -6,15 +6,16 @@ public class SetBounds : MonoBehaviour
 {
     public void ObjectBounds()
     {
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4.3f, 5f), 0);
-
-        if (transform.position.x > 2.8f)
+        transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -4.15f, 5f));
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -2.7f, 2.7f), transform.position.y);
+;
+       if (transform.position.x > 2.7f)
         {
-            transform.position = new Vector3(2.8f, transform.position.y, 0);
+            transform.position = new Vector3(2.7f, transform.position.y, 0);
         }
-        else if (transform.position.x < -2.8f)
+        else if (transform.position.x < -2.7f)
         {
-            transform.position = new Vector3(-2.8f, transform.position.y, 0);
+            transform.position = new Vector3(-2.7f, transform.position.y, 0);
         }
     }
 }

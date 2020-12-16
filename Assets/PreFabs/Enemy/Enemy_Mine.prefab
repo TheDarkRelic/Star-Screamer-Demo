@@ -273,6 +273,7 @@ MonoBehaviour:
   followsTarget: 1
   _minSpeed: 5
   _maxSeed: 7
+  scoreAmount: 50
   speed: 0
   enemyId: 1
   hitDamage: {fileID: 411537547, guid: 2139c3363373ab54faf112fd830b3856, type: 3}

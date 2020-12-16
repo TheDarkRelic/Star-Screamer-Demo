@@ -1,15 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldPowerUp : MonoBehaviour
+public class ShieldPowerUp : MonoBehaviour, IPowerup
 {
+    
     public GameObject shieldVisuals;
-    public bool isShieldActive = false;
-    public void ShieldBoost()
+    [SerializeField] string powerUpName;
+    [SerializeField] int powerUpID;
+
+    public string PowerUpName => (powerUpName);
+
+    public int PowerUpID => (powerUpID);
+
+    public void ActivatePowerUp()
     {
-        isShieldActive = true;
-        shieldVisuals.SetActive(true);
-        print("shield is active");
+        var player = FindObjectOfType<Player>();
+        player.shieldActive = true;
+        player.OnShieldActivate.Invoke();
     }
+
 }

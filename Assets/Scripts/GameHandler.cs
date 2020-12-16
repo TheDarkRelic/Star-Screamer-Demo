@@ -11,7 +11,6 @@ public class GameHandler : MonoBehaviour
     [SerializeField] Image _pauseMenuCanvas;
     Animator _pauseAnimator;
 
-
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();

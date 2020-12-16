@@ -3,31 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedPowerUp : MonoBehaviour
+public class SpeedPowerUp : MonoBehaviour, IPowerup
 {
-    [SerializeField] float _speedBoost = 5f;
-    [SerializeField] float _speedCap = 15f;
-    PlayerMovement _player;
+    public static Action OnSpeedAction;
+   
+    [SerializeField] string powerUpName;
+    [SerializeField] int powerUpID;
 
-    void Start()
+    public string PowerUpName => (powerUpName);
+    public int PowerUpID => (powerUpID);
+
+    public void ActivatePowerUp()
     {
-        _player = FindObjectOfType<PlayerMovement>();
-        if (_player == null)
-        {
-           Debug.Log("Not Found Player");
-
-        }
-    }
-
-    public void SpeedBoost()
-    {
-        if (_player.speed >= _speedCap)
-        {
-            _player.speed = _speedCap;
-        }
-        else
-        { 
-            _player.speed += _speedBoost;
-        }
+        OnSpeedAction();
     }
 }

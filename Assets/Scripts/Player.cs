@@ -2,87 +2,59 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-
-    [SerializeField] float _laserOffset = .08f;
-    [SerializeField] float _fireRate = .05f;
-    [SerializeField] int _powerUpTimer = 5;
-
-    float _canFire = -1f;
-
-    public GameObject laserPreFab;
-    public GameObject tripleShotPreFab;
-
-    UiHandler _uiHandler;
+    public UnityEvent OnShieldDeactivate;
+    public UnityEvent OnShieldActivate;
+    public PlayerShoot playerShoot;
     public PlayerMovement playerMove;
     public SetBounds playerBounds;
-
-    public static bool isTripleShotActive = false;
-    public static bool optionsActive;
-    private InstaniateExplosion _explosion;
+    public bool shieldActive;
+    public bool optionsActive;
+    public bool movementActive;
 
     void Awake()
-    { 
-        GetExplosion();
+    {
+        movementActive = true;
+        shieldActive = false;
         optionsActive = false;
-        AssignComponents();
     }
 
     void Update()
     {
-        playerBounds.ObjectBounds();
-        playerMove.CalculateMovement();
-        Shoot();
-    }
-
-    private void Shoot()
-    {
-        if (Input.GetKey(KeyCode.Space) && Time.time > _canFire)
-            FireLaser();
-    }
-
-    private void FireLaser()
-    {
-        _canFire = Time.time + _fireRate;
-
-        if (isTripleShotActive == true)
+        if (movementActive)
         {
-            Instantiate(tripleShotPreFab, transform.position, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(laserPreFab, transform.position + new Vector3(0, _laserOffset, 0), Quaternion.identity);
+            playerBounds.ObjectBounds();
+            playerMove.CalculateMovement();
+            ArmLaser();
         }
     }
 
-    
-
-    private void AssignComponents()
+    private void ArmLaser()
     {
-        _uiHandler = GameObject.Find("Canvas").GetComponent<UiHandler>();
-    }
-   
-
-    public void TripleShotActive()
-    {
-        isTripleShotActive = true;
+        if (Input.GetKey(KeyCode.Space) && Time.time > playerShoot._canFire)
+            playerShoot.FireLaser();
     }
 
     public void DestroyPlayer()
     {
-        Destroy(this.gameObject);
+        movementActive = false;
+        var playerCollider = GetComponent<Collider2D>();
+        var movementScript = GetComponent<PlayerMovement>();
+        playerCollider.enabled = false;
+        Destroy(movementScript);
+        EventsList.OnPlayerDeath?.Invoke();
+
+
+        var sprites = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var sprite in sprites)
+        {
+            sprite.enabled = false;
+        }
     }
-
-    public void GetExplosion()
-    {
-       _explosion = GetComponent<InstaniateExplosion>();
-    }
-
-
-
 
 }
 

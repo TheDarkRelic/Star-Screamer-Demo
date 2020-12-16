@@ -5,31 +5,39 @@ using UnityEngine;
 
 public class TriggerCollider : MonoBehaviour
 {
-
+    
     public static Action<int> OnTriggerAction;
 
     private int _damageAmount; 
 
-    public Player _player;
+    [HideInInspector] public Player _player;
     public Enemy enemy;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            _damageAmount = 1;
-            OnTriggerAction?.Invoke(_damageAmount);
-            enemy.DestroyEnemy();
-
-        }
-
-        if (other.CompareTag("Laser") || other.CompareTag("Missile"))
-        {
-            if (other.CompareTag("Missile"))
+            var player = other.GetComponent<Player>();
+            if (player.shieldActive)
             {
-                Enemy.OnEnemyDamage?.Invoke(2);
+                player.shieldActive = false;
+                player.OnShieldDeactivate.Invoke();
             }
-            Enemy.OnEnemyDamage?.Invoke(1);
+            else
+            {
+                _damageAmount = 1;
+                OnTriggerAction?.Invoke(_damageAmount);
+            }
+            enemy.DestroyEnemy();
+        }
+        else if (other.CompareTag("Laser"))
+        {
             Destroy(other.gameObject);
+            GetComponent<IDamageable>().ProcessDamage(1);
+        }
+        else if (other.CompareTag("Missile"))
+        {
+            Destroy(other.gameObject);
+            GetComponent<IDamageable>().ProcessDamage(2);
         }
     }
 }
