@@ -50,11 +50,11 @@ public class HitDamage : MonoBehaviour
 
     void OnEnable()
     {
-        TriggerCollider.OnTriggerAction += ProcessDamage;
+        BasicEnemyCollider.OnTriggerAction += ProcessDamage;
     }
 
     void OnDisable()
     {
-        TriggerCollider.OnTriggerAction -= ProcessDamage;
+        BasicEnemyCollider.OnTriggerAction -= ProcessDamage;
     }
 }

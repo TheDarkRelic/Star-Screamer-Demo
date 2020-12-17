@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5336267975996508142}
   - component: {fileID: 6536501630902904298}
   - component: {fileID: -528316787671867732}
+  - component: {fileID: -5859703089811797183}
   m_Layer: 0
   m_Name: Missle
   m_TagString: Missile
@@ -127,7 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86773abb2d9f2241a2a7f087b6661af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveState: 0
   offset: -90
+  _speed: 3
 --- !u!61 &-528316787671867732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,6 +157,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5859703089811797183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5336267975996508143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b04f3e2d9be664696d21a7fba14eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  x: 0
+  y: 1
+  z: 0
 --- !u!1 &5336267976821756620
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerCollider : MonoBehaviour
+public class BasicEnemyCollider : MonoBehaviour
 {
-    
     public static Action<int> OnTriggerAction;
 
-    private int _damageAmount; 
+    [SerializeField] int _damageAmount;
 
     [HideInInspector] public Player _player;
     public Enemy enemy;
@@ -24,7 +23,6 @@ public class TriggerCollider : MonoBehaviour
             }
             else
             {
-                _damageAmount = 1;
                 OnTriggerAction?.Invoke(_damageAmount);
             }
             enemy.DestroyEnemy();
