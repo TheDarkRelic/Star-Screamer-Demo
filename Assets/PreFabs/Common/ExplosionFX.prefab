@@ -4819,4 +4819,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionSfx: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
-  _explosionVolume: 0.5
+  _ExplosionVolume: 0.5

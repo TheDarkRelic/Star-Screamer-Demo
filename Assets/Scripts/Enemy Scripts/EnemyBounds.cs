@@ -15,5 +15,10 @@ public class EnemyBounds : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (transform.position.x < -4 || transform.position.x > 4)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

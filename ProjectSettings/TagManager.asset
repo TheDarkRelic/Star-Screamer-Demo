@@ -13,6 +13,7 @@ TagManager:
   - Missile
   - Options
   - Boss
+  - Bits
   layers:
   - Default
   - TransparentFX

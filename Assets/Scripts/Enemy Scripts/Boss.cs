@@ -28,7 +28,13 @@ public class Boss : MonoBehaviour, IDamageable
             return;
         Destroy(other.gameObject);
         if (isDamageable) ProcessDamage(1);
+
+        if (!other.CompareTag("Missile"))
+            return;
+        Destroy(other.gameObject);
+        if (isDamageable) ProcessDamage(2);
     }
+
 
     private void SetDamageable()
     {

@@ -25,7 +25,17 @@ public class BasicEnemyCollider : MonoBehaviour
             {
                 OnTriggerAction?.Invoke(_damageAmount);
             }
-            enemy.DestroyEnemy();
+
+            if (this.CompareTag("Enemy"))
+            {
+                enemy.DestroyEnemy();
+            }
+
+            if (this.CompareTag("Bits"))
+            {
+                Destroy(this.gameObject);
+            }
+
         }
         else if (other.CompareTag("Laser"))
         {

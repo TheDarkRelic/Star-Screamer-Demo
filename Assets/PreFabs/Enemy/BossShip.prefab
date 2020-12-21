@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 1467016236}
   - component: {fileID: 1467016237}
   - component: {fileID: 760685387}
+  - component: {fileID: -7639778210471720225}
   m_Layer: 0
   m_Name: BossShip
   m_TagString: Boss
@@ -267,6 +268,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 1000
   isDamageable: 0
+--- !u!114 &-7639778210471720225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808285669860954347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e0335c2539a3144b060639522540a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyHealth: 5
+  scoreAmount: 0
 --- !u!58 &1968138730
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -721,7 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2581558775419591273, guid: 42c61150638951241a259759c23890b3, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2581558775419591273, guid: 42c61150638951241a259759c23890b3, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval

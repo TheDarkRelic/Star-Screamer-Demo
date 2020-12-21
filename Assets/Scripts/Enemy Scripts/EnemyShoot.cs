@@ -29,4 +29,14 @@ public class EnemyShoot : MonoBehaviour
             }
         }
     }
+
+    public void AnimShoot()
+    {
+        GameObject enemyLaser = Instantiate(_laserPreFab, _firePoint.position, Quaternion.identity);
+        Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+        for (int i = 0; i < lasers.Length; i++)
+        {
+            lasers[i].AssignEnemyLaser();
+        }
+    }
 }

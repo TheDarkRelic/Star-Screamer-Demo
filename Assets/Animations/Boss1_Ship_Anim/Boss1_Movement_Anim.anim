@@ -634,14 +634,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.1666667
+  - time: 3.4
     functionName: FirePhotonMissileLocal
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.6666667
+  - time: 4
     functionName: FirePhotonMissileLocal
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -649,13 +649,6 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 4.5666666
-    functionName: FirePhotonMissileLocal
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 4.85
     functionName: FirePhotonMissileLocal
     data: 
     objectReferenceParameter: {fileID: 0}

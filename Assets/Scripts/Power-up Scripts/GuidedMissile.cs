@@ -15,13 +15,18 @@ public class GuidedMissile : MonoBehaviour
     private Enemy _preTarget = null;
     public float offset = -90;
 
-    [SerializeField] private float _speed = 3f;
+    [SerializeField] private float _lifeTime = 2f;
 
     private void Start()
     {
-        SetState(MoveState.NotTracking);
+        SetState(MoveState.NotTracking); 
+        InvokeRepeating("GetTarget", 0, 0.2f);
+        Destroy(this.gameObject, _lifeTime);
+    }
+
+    private void GetTarget()
+    {
         _preTarget = FindObjectOfType<Enemy>();
-        Destroy(this.gameObject, 1.5f);
     }
 
     private void Update()

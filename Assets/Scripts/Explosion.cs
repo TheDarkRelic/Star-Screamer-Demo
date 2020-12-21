@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-
     public AudioClip explosionSfx;
-    [SerializeField] private float _explosionVolume = 0.3f;
+    [SerializeField] private float _ExplosionVolume;
 
     void Start()
     {
-        AudioSource.PlayClipAtPoint(explosionSfx, Camera.main.transform.position, _explosionVolume);
+
+        AudioSource.PlayClipAtPoint(explosionSfx, Camera.main.transform.position, _ExplosionVolume);
         Destroy(this.gameObject, 2f);
     }
 

@@ -98,9 +98,9 @@ public  class UIHandler : MonoBehaviour, IScoreable
         while (gameOver)
         {
             _gameOverText.gameObject.SetActive(true);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.1f);
             _gameOverText.gameObject.SetActive(false);
-            yield return new WaitForSeconds(1); 
+            yield return new WaitForSeconds(.05f); 
         }
     }
 

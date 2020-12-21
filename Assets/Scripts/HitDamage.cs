@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HitDamage : MonoBehaviour
+public class HitDamage : MonoBehaviour, IDamageable
 {
     public static Action<int> OnHitAction;
     public int health;

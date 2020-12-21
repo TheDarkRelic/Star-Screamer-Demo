@@ -42,9 +42,12 @@ public class Player : MonoBehaviour
     public void DestroyPlayer()
     {
         movementActive = false;
-        var playerCollider = GetComponent<Collider2D>();
+        var playerColliders = GetComponents<Collider2D>();
         var movementScript = GetComponent<PlayerMovement>();
-        playerCollider.enabled = false;
+        foreach (var collider in playerColliders)
+        {
+            collider.enabled = false;
+        }
         Destroy(movementScript);
         EventsList.OnPlayerDeath?.Invoke();
 
