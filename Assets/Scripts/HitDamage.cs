@@ -11,12 +11,14 @@ public class HitDamage : MonoBehaviour, IDamageable
     public bool isDamageable = true;
 
     public Player _player;
+    [SerializeField] PlayerShoot _playerShoot;
     private InstaniateExplosion _explosionFX;
     
 
     void Start()
     {
         _explosionFX = GetComponent<InstaniateExplosion>();
+        
     }
 
     public void ProcessDamage(int damageAmount)
@@ -29,6 +31,7 @@ public class HitDamage : MonoBehaviour, IDamageable
         if (health > 0) 
         {
             StartCoroutine(DamageCoolDown());
+            _playerShoot.laserNumber--;
             health -= damageAmount;
             if (health < 1)
             {

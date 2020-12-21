@@ -4,14 +4,33 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+
     [SerializeField] private Transform _firePoint;
-    [SerializeField] GameObject laserPreFab;
+    [SerializeField] GameObject singleShotPreFab;
+    [SerializeField] GameObject doubleShotPreFab;
     [SerializeField] GameObject tripleShotPreFab;
 
     public  float _canFire = -1f;
     [SerializeField] float _fireRate = .05f;
+    public int laserNumber;
 
-    public bool isTripleShotActive = false;
+
+    private void Start()
+    {
+        laserNumber = 0;
+    }
+
+    private void Update()
+    {
+        if (laserNumber < 0)
+        {
+            laserNumber = 0;
+        }
+        if (laserNumber > 2)
+        {
+            laserNumber = 2;
+        }
+    }
 
     public void FireLaser()
     {
@@ -22,23 +41,19 @@ public class PlayerShoot : MonoBehaviour
 
     private void ProjectileToFire()
     {
-        if (isTripleShotActive == true)
+        switch (laserNumber)
         {
-            Instantiate(tripleShotPreFab, transform.position, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(laserPreFab, _firePoint.position, Quaternion.identity);
-        }
-    }
+            case 0:
+                Instantiate(singleShotPreFab, _firePoint.position, Quaternion.identity);
+                break;
 
-    public void TripleShotActive()
-    {
-        isTripleShotActive = true;
-    }
+            case 1:
+                Instantiate(doubleShotPreFab, transform.position, Quaternion.identity);
+                break;
 
-    public void TripleShotInActive()
-    {
-        isTripleShotActive = false;
+            case 2: 
+                Instantiate(tripleShotPreFab, transform.position, Quaternion.identity); 
+                break;
+        }
     }
 }

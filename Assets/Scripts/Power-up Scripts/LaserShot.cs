@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TripleShot : MonoBehaviour, IPowerup
+public class LaserShot : MonoBehaviour, IPowerup
 {
     private PlayerShoot _playerShoot;
 
@@ -16,7 +16,7 @@ public class TripleShot : MonoBehaviour, IPowerup
 
     public void ActivatePowerUp()
     {
-        _playerShoot.TripleShotActive();
+        _playerShoot.laserNumber++;
     }
 
 }
