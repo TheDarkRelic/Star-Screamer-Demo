@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d753169397629419ec4dc3621fbfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metersPerSecond: 5
+  metersPerSecond: 2
 --- !u!114 &5060771943265953016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _powerupSfx: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
-  sFxVolume: 0.5
+  sFxVolume: 0.3
 --- !u!114 &234663639474195365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,33 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6e23b4666108f418e4500b6c04df74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnOptionsPickUp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4263381101864130480, guid: a4efab0002cd2fd499eb3333c80da6da, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 5935635427291911460, guid: 1fe61a1da4c58874a99d1966bd930c68, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!1 &2148664760383411660
 GameObject:
   m_ObjectHideFlags: 0

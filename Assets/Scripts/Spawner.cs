@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     public bool spawnPowerUps;
     [SerializeField] private int _secondTilBossSpawn = 60;
     [SerializeField] private int _spawnAmount = 3;
-
+    public bool spawnable = true;
     void Awake()
     {
         _enemy = FindObjectOfType<Enemy>();
@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnBoss());
         if(spawnAsteroids) StartCoroutine(SpawnAsteroid());
         if (spawnEnemyMines) StartCoroutine(SpawnMineEnemy());
-        if (spawnPowerUps) StartCoroutine(SpawnPowerup());
+        //if (spawnPowerUps) StartCoroutine(SpawnPowerup());
         if (spawnEnemyAnims) StartCoroutine(SpawnShipEnemyAnim());
     }
 
@@ -95,12 +95,24 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public IEnumerator SpawnPowerupItem(Transform trans)
+    {
+        if (spawnable)
+        {
+            spawnable = false;
+            int randomPowerup = Random.Range(0, _powerups.Length);
+            Instantiate(_powerups[randomPowerup], trans.position, Quaternion.identity);
+            yield return new WaitForEndOfFrame();
+            spawnable = true;
+        }
+       
+    }
+
     IEnumerator SpawnBoss()
     {
         yield return new WaitForSeconds(_secondTilBossSpawn);
         Instantiate(enemies[4], new Vector2(0, 10), Quaternion.identity);
         StopAllCoroutines();
-        StartCoroutine(SpawnPowerup());
     }
 
     public void OnPlayerDeath()

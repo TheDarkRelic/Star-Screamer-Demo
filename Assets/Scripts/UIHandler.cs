@@ -16,6 +16,7 @@ public  class UIHandler : MonoBehaviour, IScoreable
     [SerializeField] Text _gameOverText;
     [SerializeField] Text _restartText;
     [SerializeField] Text _mainMenuText;
+    [SerializeField] Text _readyText;
     [SerializeField] Image _pauseMenuCanvas;
     [SerializeField] GameHandler _gameHandler;
     public bool gameOver;
@@ -26,6 +27,11 @@ public  class UIHandler : MonoBehaviour, IScoreable
     {
         SetGameOverText();
         InitializeScore();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(FlashReadyEnabled());
     }
 
     private void InitializeScore()
@@ -101,6 +107,17 @@ public  class UIHandler : MonoBehaviour, IScoreable
             yield return new WaitForSeconds(.1f);
             _gameOverText.gameObject.SetActive(false);
             yield return new WaitForSeconds(.05f); 
+        }
+    }
+
+    IEnumerator FlashReadyEnabled()
+    {
+        while (Time.time < 5)
+        {
+            _readyText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(.5f);
+            _readyText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(.5f);
         }
     }
 

@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public bool shieldActive;
     public bool optionsActive;
     public bool movementActive;
+    public HitDamage hitDamage;
 
     void Awake()
     {

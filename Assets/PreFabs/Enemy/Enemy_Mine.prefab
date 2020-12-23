@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e0335c2539a3144b060639522540a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyHealth: 6
+  _enemyHealth: 4
   scoreAmount: 50
 --- !u!114 &5917448174767052088
 MonoBehaviour:
@@ -237,5 +237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageAmount: 1
+  _hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
   _player: {fileID: 0}
   enemy: {fileID: -2436343016565033542}

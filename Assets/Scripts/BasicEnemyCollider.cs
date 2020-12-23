@@ -8,7 +8,7 @@ public class BasicEnemyCollider : MonoBehaviour
     public static Action<int> OnTriggerAction;
 
     [SerializeField] int _damageAmount;
-
+    [SerializeField] GameObject _hitParticles;
     [HideInInspector] public Player _player;
     public Enemy enemy;
     private void OnTriggerEnter2D(Collider2D other)
@@ -39,6 +39,7 @@ public class BasicEnemyCollider : MonoBehaviour
         }
         else if (other.CompareTag("Laser"))
         {
+            Instantiate(_hitParticles, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
             GetComponent<IDamageable>().ProcessDamage(1);
         }

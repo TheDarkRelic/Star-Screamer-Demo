@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _powerupSfx: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
-  sFxVolume: 0.2
+  sFxVolume: 0.3
 --- !u!114 &2561103578634595567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70d31201f33472409164188c0a4f61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedMinus: -1
 --- !u!1 &2561103579364766814
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ TagManager:
   - Options
   - Boss
   - Bits
+  - Asteroid
   layers:
   - Default
   - TransparentFX

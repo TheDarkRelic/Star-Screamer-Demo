@@ -14,8 +14,6 @@ public interface IDamageable
 
 public interface IPowerup
 {
-    string PowerUpName { get; }
-    int PowerUpID { get; }
     void ActivatePowerUp();
 }
 

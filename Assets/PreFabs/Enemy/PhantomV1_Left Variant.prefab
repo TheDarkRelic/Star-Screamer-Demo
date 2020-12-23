@@ -30,6 +30,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1110532255152814781, guid: bc7d5512338085f428f029a31064c0fa, type: 3}
+      propertyPath: _hitParticles
+      value: 
+      objectReference: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
     - target: {fileID: 3486275469600651943, guid: bc7d5512338085f428f029a31064c0fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -73,6 +77,10 @@ PrefabInstance:
     - target: {fileID: 3486275469600651943, guid: bc7d5512338085f428f029a31064c0fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038139336585261212, guid: bc7d5512338085f428f029a31064c0fa, type: 3}
+      propertyPath: _enemyHealth
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7692190462859662667, guid: bc7d5512338085f428f029a31064c0fa, type: 3}
       propertyPath: m_Name

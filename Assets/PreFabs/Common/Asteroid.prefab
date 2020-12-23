@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2744720384950556176}
   m_Layer: 0
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,8 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c348eab5caeb2246bea5238477a6892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 10
+  _health: 6
   _asteroidBurst: {fileID: 6688432382252852338, guid: 5ba157150566f8a41b72fbefe3b80606, type: 3}
+  _hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
+  _damageAmount: 1
 --- !u!114 &2744720384950556176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceSelection: 1
-  speed: 6
+  speed: 3
   x: 0
   y: -1
   z: 0

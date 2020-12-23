@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d753169397629419ec4dc3621fbfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metersPerSecond: 5
+  metersPerSecond: 2
 --- !u!114 &-2810099598261048865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _powerupSfx: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
-  sFxVolume: 0.5
+  sFxVolume: 0.3
 --- !u!114 &1985643364
 MonoBehaviour:
   m_ObjectHideFlags: 0
