@@ -669,8 +669,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 7.2833333
+  - time: 7.3333335
+    functionName: ActivatePhotonShield
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 7.3333335
     functionName: FireLaserCanon
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 7.35
+    functionName: BossShieldCoolDown
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -741,6 +755,13 @@ AnimationClip:
     messageOptions: 0
   - time: 13.133333
     functionName: ActivatePhotonShield
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 13.2
+    functionName: BossShieldCoolDown
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

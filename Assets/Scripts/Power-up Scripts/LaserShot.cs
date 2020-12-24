@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class LaserShot : MonoBehaviour, IPowerup
 {
-    private PlayerShoot _playerShoot;
+    private Player _player;
 
     void Awake()
     {
-        _playerShoot = GameObject.Find("Player_1").GetComponent<PlayerShoot>();
+        _player = FindObjectOfType<Player>();
     }
 
     public void ActivatePowerUp()
     {
-        _playerShoot.laserNumber++;
+        _player.playerShoot.laserNumber++;
     }
 
 }

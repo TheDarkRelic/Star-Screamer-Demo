@@ -9,10 +9,12 @@ public class HitDamage : MonoBehaviour, IDamageable
     public static Action<int> OnHitAction;
     public int health;
     public bool isDamageable = true;
-
+    [SerializeField] float _iframeTimer;
     public Player _player;
+    [SerializeField] SpriteRenderer _shipSrite = null;
     [SerializeField] PlayerShoot _playerShoot;
     private InstaniateExplosion _explosionFX;
+    [SerializeField] AudioClip _explosionSFX;
     
 
     void Start()
@@ -27,29 +29,55 @@ public class HitDamage : MonoBehaviour, IDamageable
         {
             return;
         }
-        
-        if (health > 0) 
+        if (!_player.shieldActive)
         {
-            _player.OnShieldDeactivate.Invoke();
-            StartCoroutine(DamageCoolDown());
-            _playerShoot.laserNumber--;
-            health -= damageAmount;
-            if (health < 1)
+            if (health > 0)
             {
-                _player.DestroyPlayer();
-                _explosionFX.InitExplosion(this.gameObject);
+                StartCoroutine(DamageCoolDown());
+                _playerShoot.laserNumber--;
+                StartCoroutine(FlashIframes());
+                health -= damageAmount;
+                if (health < 1)
+                {
+                    StopAllCoroutines();
+                    _player.DestroyPlayer();
+                    var events = FindObjectOfType<EventsList>();
+                    events.PlayerDeath.Invoke();
+                }
             }
-        }
 
-        OnHitAction(health);
+            OnHitAction(health);
+        }
+        else
+        {
+            _player.OnShieldDeactivate?.Invoke();
+            _player.shieldActive = false;
+            StartCoroutine(DamageCoolDown());
+        }
+      
     }
 
     public IEnumerator DamageCoolDown()
     {
-        isDamageable = false;
+        SetDamageable(false);
+        yield return new WaitForSeconds(_iframeTimer);
+        SetDamageable(true);
+    }
 
-        yield return new WaitForSeconds(1f);
-        isDamageable = true;
+    private IEnumerator FlashIframes()
+    {
+        while(!isDamageable)
+        {
+            _shipSrite.gameObject.SetActive(false);
+            yield return new WaitForSeconds(.04f);
+            _shipSrite.gameObject.SetActive(true);
+            yield return new WaitForSeconds(.04f);
+        }
+        
+    }
+    private void SetDamageable(bool state)
+    {
+        isDamageable = state;
     }
 
     void OnEnable()

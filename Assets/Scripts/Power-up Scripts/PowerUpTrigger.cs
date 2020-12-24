@@ -6,9 +6,6 @@ using UnityEngine;
 public class PowerUpTrigger : MonoBehaviour, IScoreable
 {
 
-    SpeedPowerUp _speedPu;
-    OptionsPowerUp _optionsPU;
-    ShieldPowerUp _shieldPU;
     [SerializeField] AudioClip _powerupSfx;
     public float sFxVolume = 0.2f;
 
@@ -19,8 +16,8 @@ public class PowerUpTrigger : MonoBehaviour, IScoreable
             var powerUp = GetComponent<IPowerup>();
             if (powerUp != null)
             {
-                Score(100);
                 powerUp.ActivatePowerUp();
+                Score(100);
                 AudioSource.PlayClipAtPoint(_powerupSfx, Camera.main.transform.position, sFxVolume);
                 Destroy(this.gameObject);
             }

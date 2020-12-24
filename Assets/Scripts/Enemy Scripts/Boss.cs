@@ -5,6 +5,8 @@ using UnityEngine;
 public class Boss : MonoBehaviour, IDamageable
 {
     [SerializeField] private int _health = 500;
+    [SerializeField] GameObject _hitParticles;
+    [SerializeField] float _hitParticleOffset;
     public bool isDamageable;
 
     void Start()
@@ -26,13 +28,14 @@ public class Boss : MonoBehaviour, IDamageable
     {
         if (!other.CompareTag("Laser"))
             return;
+        Instantiate(_hitParticles, new Vector2 (other.transform.position.x, other.transform.position.y + _hitParticleOffset), Quaternion.identity);
         Destroy(other.gameObject);
         if (isDamageable) ProcessDamage(1);
 
-        if (!other.CompareTag("Missile"))
+        /*if (!other.CompareTag("Missile"))
             return;
         Destroy(other.gameObject);
-        if (isDamageable) ProcessDamage(2);
+        if (isDamageable) ProcessDamage(2);*/
     }
 
 
@@ -48,8 +51,8 @@ public class Boss : MonoBehaviour, IDamageable
 
     private IEnumerator BossShieldCoolDown()
     {
-        isDamageable = false;
+        SetNotDamageable();
         yield return new WaitForSeconds(3);
-        isDamageable = true;
+        SetDamageable();
     }
 }

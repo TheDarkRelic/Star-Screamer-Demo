@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8582810824561778200}
   - component: {fileID: 8582810824561778199}
   - component: {fileID: 1616038233019292807}
+  - component: {fileID: 5333292394758387920}
   m_Layer: 0
   m_Name: ExplosionFX
   m_TagString: Untagged
@@ -4818,5 +4819,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d146472d19efe634996d9bce775ed268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionSfx: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
-  _ExplosionVolume: 0.5
+  _explosionSfx: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
+  _ExplosionVolume: 0.3
+--- !u!114 &5333292394758387920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8582810824561778198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e566a98d7ce1d1478aa03d588e0f7f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyTimer: 2

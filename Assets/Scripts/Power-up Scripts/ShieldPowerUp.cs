@@ -7,12 +7,6 @@ public class ShieldPowerUp : MonoBehaviour, IPowerup
 {
     
     public GameObject shieldVisuals;
-    [SerializeField] string powerUpName;
-    [SerializeField] int powerUpID;
-
-    public string PowerUpName => (powerUpName);
-
-    public int PowerUpID => (powerUpID);
 
     public void ActivatePowerUp()
     {

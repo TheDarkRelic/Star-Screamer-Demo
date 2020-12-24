@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3695775874452429407}
   - component: {fileID: 2430731341345887539}
   - component: {fileID: -2810099598261048865}
-  - component: {fileID: 1985643364}
+  - component: {fileID: 159090055071319527}
   m_Layer: 0
   m_Name: Laser_Power-up_Icon
   m_TagString: Powerup
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _powerupSfx: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
   sFxVolume: 0.3
---- !u!114 &1985643364
+--- !u!114 &159090055071319527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4353944438588370163}
   - component: {fileID: 2824290149916660754}
   m_Layer: 0
-  m_Name: TripleshotSprite
+  m_Name: Laser_Upgrade_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

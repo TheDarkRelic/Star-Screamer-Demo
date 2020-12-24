@@ -15,16 +15,7 @@ public class BasicEnemyCollider : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            var player = other.GetComponent<Player>();
-            if (player.shieldActive)
-            {
-                player.shieldActive = false;
-                player.OnShieldDeactivate.Invoke();
-            }
-            else
-            {
-                OnTriggerAction?.Invoke(_damageAmount);
-            }
+            OnTriggerAction?.Invoke(_damageAmount);
 
             if (this.CompareTag("Enemy"))
             {

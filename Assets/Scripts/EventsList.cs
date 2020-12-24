@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class EventsList : MonoBehaviour
 {
     public UnityEvent OnOptionsPickUp;
+    public UnityEvent PlayerDeath;
     public static Action OnPlayerDeath;
     public static Action<int> OnHealthPickup;
     public static Action<int> OnScoreAction;

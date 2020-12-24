@@ -26,10 +26,12 @@ public class PlayerShoot : MonoBehaviour
         {
             laserNumber = 0;
         }
+
         if (laserNumber > 2)
         {
             laserNumber = 2;
         }
+        
     }
 
     public void FireLaser()
