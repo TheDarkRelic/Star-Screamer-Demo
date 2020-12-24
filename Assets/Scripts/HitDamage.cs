@@ -30,6 +30,7 @@ public class HitDamage : MonoBehaviour, IDamageable
         
         if (health > 0) 
         {
+            _player.OnShieldDeactivate.Invoke();
             StartCoroutine(DamageCoolDown());
             _playerShoot.laserNumber--;
             health -= damageAmount;

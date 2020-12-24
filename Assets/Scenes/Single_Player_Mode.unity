@@ -2053,6 +2053,7 @@ MonoBehaviour:
   gameOver: 0
   score: 0
   highScore: 0
+  player: {fileID: 0}
 --- !u!114 &960617093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2683,7 +2684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4bd3ddada71384d80157392996a851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSinglePlayer: 1
   _pauseMenuCanvas: {fileID: 3459886}
 --- !u!4 &1232719625
 Transform:
@@ -2853,6 +2853,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1087107603, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1104463927, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
       propertyPath: m_Controller
       value: 
@@ -2861,6 +2865,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: cca80225961d75e46978baa41e341357, type: 2}
+    - target: {fileID: 1782849754, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7272245646803182116, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
       propertyPath: m_Name
       value: Player_1
@@ -2871,7 +2879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7272245646803182296, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.27
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 7272245646803182296, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2909,7 +2917,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7272245646803182296, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7272245646803182296, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1782849754, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
 --- !u!1 &1344509197
 GameObject:
@@ -4220,6 +4237,7 @@ MonoBehaviour:
   - {fileID: 763962006018392357, guid: 2182f795af9ae1c4aa19d4cf7d98bfba, type: 3}
   - {fileID: 2561103578634595562, guid: 60105a4295b8ae64b8dea4f40381f9f5, type: 3}
   - {fileID: 3577730681019523038, guid: 31b4f4c8d6cc7c44fb67b94f8079bcd4, type: 3}
+  - {fileID: 7495001715983204622, guid: ae0ba4c5beb021246aad66485086db41, type: 3}
   _enemyCapsule: {fileID: 1203097226}
   _enemyAnimCapsule: {fileID: 817737941}
   _minSpawnPowerup: 5
@@ -4229,7 +4247,7 @@ MonoBehaviour:
   spawnEnemyMines: 1
   spawnEnemyAnims: 1
   spawnPowerUps: 1
-  _secondTilBossSpawn: 60
+  _secondTilBossSpawn: 120
   _spawnAmount: 3
   spawnable: 1
 --- !u!4 &2035499939

@@ -34,16 +34,15 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnBoss());
         if(spawnAsteroids) StartCoroutine(SpawnAsteroid());
         if (spawnEnemyMines) StartCoroutine(SpawnMineEnemy());
-        //if (spawnPowerUps) StartCoroutine(SpawnPowerup());
         if (spawnEnemyAnims) StartCoroutine(SpawnShipEnemyAnim());
     }
 
     IEnumerator SpawnAsteroid()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(5.0f);
         while (_stopSpawning == false)
         {
-            var randomSpawnTime = Random.Range(6, 8);
+            var randomSpawnTime = Random.Range(3, 6);
             var x = Random.Range(-2.9f, 2.9f);
             var randomSpawnPos = new Vector2(x, this.transform.position.y);
             GameObject newEnemy = (GameObject)Instantiate(enemies[0], randomSpawnPos, Quaternion.identity);
@@ -54,7 +53,7 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnShipEnemyAnim()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(7);
         while (_stopSpawning == false)
         {
             var randomAnim = Random.Range(2, 4);
@@ -72,7 +71,7 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnMineEnemy()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(8.0f);
         while (_stopSpawning == false)
         {
             var randomSpawnTime = Random.Range(4, 6);
@@ -80,18 +79,6 @@ public class Spawner : MonoBehaviour
             GameObject newEnemy = Instantiate(enemies[1], randomSpawnPos, Quaternion.identity);
             newEnemy.transform.parent = _enemyCapsule.transform;
             yield return new WaitForSeconds(randomSpawnTime);
-        }
-    }
-
-    IEnumerator SpawnPowerup()
-    {
-        while (_stopSpawning == false)
-        {
-            var powerupSpawnRate = Random.Range(_minSpawnPowerup, _maxSpawnPowerup);
-            yield return new WaitForSeconds(powerupSpawnRate);
-            Vector2 positionToSpawn = new Vector2(Random.Range(-2.8f, 2.8f), 7);
-            int randomPowerup = Random.Range(0, _powerups.Length);
-            Instantiate(_powerups[randomPowerup], positionToSpawn, Quaternion.identity);
         }
     }
 

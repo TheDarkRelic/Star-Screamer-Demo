@@ -149,10 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c348eab5caeb2246bea5238477a6892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 6
+  _health: 5
   _asteroidBurst: {fileID: 6688432382252852338, guid: 5ba157150566f8a41b72fbefe3b80606, type: 3}
   _hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
+  _asteroidParticles: {fileID: 4806916431867819375, guid: b821071e4f1c2814d92e82a0b19dcbd4, type: 3}
   _damageAmount: 1
+  _asteroidSFX: {fileID: 6927984969700514589, guid: 263956b244fdfe34094d2dbd40ada1ea, type: 3}
 --- !u!114 &2744720384950556176
 MonoBehaviour:
   m_ObjectHideFlags: 0

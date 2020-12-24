@@ -22,16 +22,12 @@ public  class UIHandler : MonoBehaviour, IScoreable
     public bool gameOver;
     public int score = 0;
     public int highScore = 0;
+    public Player player;
 
     void Awake()
     {
         SetGameOverText();
         InitializeScore();
-    }
-
-    private void Start()
-    {
-        StartCoroutine(FlashReadyEnabled());
     }
 
     private void InitializeScore()
@@ -112,12 +108,14 @@ public  class UIHandler : MonoBehaviour, IScoreable
 
     IEnumerator FlashReadyEnabled()
     {
-        while (Time.time < 5)
+        var flashTime = 0;
+        while (flashTime < 5)
         {
             _readyText.gameObject.SetActive(true);
             yield return new WaitForSeconds(.5f);
             _readyText.gameObject.SetActive(false);
             yield return new WaitForSeconds(.5f);
+            flashTime++;
         }
     }
 
@@ -129,9 +127,11 @@ public  class UIHandler : MonoBehaviour, IScoreable
 
     void OnEnable()
     {
+        StartCoroutine(FlashReadyEnabled());
         HitDamage.OnHitAction += UpdateLives;
         EventsList.OnScoreAction += Score;
         EventsList.OnPlayerDeath += CheckForHighScore;
+        EventsList.OnHealthPickup += UpdateLives;
     }
 
     void OnDisable()
@@ -139,6 +139,7 @@ public  class UIHandler : MonoBehaviour, IScoreable
         HitDamage.OnHitAction -= UpdateLives;
         EventsList.OnScoreAction -= Score;
         EventsList.OnPlayerDeath -= CheckForHighScore;
+        EventsList.OnHealthPickup -= UpdateLives;
     }
 
 }

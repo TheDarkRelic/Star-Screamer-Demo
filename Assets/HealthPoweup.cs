@@ -13,5 +13,6 @@ public class HealthPoweup : MonoBehaviour, IPowerup
             return;
 
         if (player.hitDamage.health < _maxHealth) player.hitDamage.health++;
+        EventsList.OnHealthPickup?.Invoke(player.hitDamage.health);
     }
 }
