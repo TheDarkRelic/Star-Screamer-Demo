@@ -9,14 +9,14 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     public static Action<int> OnEnemyDamage;
     public static Action<GameObject> OnEnemyDestroy;
-
+    public int Health { get => _enemyHealth; set => _enemyHealth = value; }
     [SerializeField] private int _enemyHealth = 5;
     [SerializeField] int scoreAmount;
-    private InstaniateExplosion _explosionFX;
+    private InstantiateExplosion _explosionFX;
 
     private void Awake()
     {
-        _explosionFX = GetComponent<InstaniateExplosion>();
+        _explosionFX = GetComponent<InstantiateExplosion>();
     }
 
     public void ProcessDamage(int damageAmount)

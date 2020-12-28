@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -24,7 +20,7 @@ public class Player : MonoBehaviour
         optionsActive = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (movementActive)
         {

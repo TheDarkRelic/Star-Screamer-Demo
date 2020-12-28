@@ -5,30 +5,26 @@ using UnityEngine;
 public class Boss : MonoBehaviour, IDamageable
 {
     [SerializeField] private int _health = 500;
+    public int Health { get => _health; set => _health = value; }
+
     [SerializeField] GameObject _hitParticles;
     [SerializeField] float _hitParticleOffset;
+    [SerializeField] AudioClip _laserSfx;
+    [SerializeField] float _laserSfxVolume = 0.5f;
+    [SerializeField] float _shieldTimer = 4;
     public bool isDamageable;
 
-    void Start()
-    {
-        isDamageable = false;
-    }
+    void Start() => isDamageable = false;
 
-    public void ProcessDamage(int damageAmount)
-    {
-        _health -= damageAmount;
-        if (_health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        var x = other.transform.position.x;
+        var y = other.transform.position.y + _hitParticleOffset;
+
         if (!other.CompareTag("Laser"))
             return;
-        Instantiate(_hitParticles, new Vector2 (other.transform.position.x, other.transform.position.y + _hitParticleOffset), Quaternion.identity);
+        Instantiate(_hitParticles, new Vector2 (x, y), Quaternion.identity);
         Destroy(other.gameObject);
         if (isDamageable) ProcessDamage(1);
 
@@ -38,21 +34,21 @@ public class Boss : MonoBehaviour, IDamageable
         if (isDamageable) ProcessDamage(2);*/
     }
 
-
-    private void SetDamageable()
+    public void ProcessDamage(int damageAmount)
     {
-        isDamageable = true;
+        _health -= damageAmount;
+        if (_health <= 0) Destroy(this.gameObject);
     }
 
-    private void SetNotDamageable()
-    {
-        isDamageable = false;
-    }
-
+    private void SetDamageable() => isDamageable = true;
+    private void SetNotDamageable() => isDamageable = false;
     private IEnumerator BossShieldCoolDown()
     {
         SetNotDamageable();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(_shieldTimer);
         SetDamageable();
     }
+
+    public void LaserCanonSfx() => AudioSource.PlayClipAtPoint(_laserSfx, Camera.main.transform.position, _laserSfxVolume);
+
 }

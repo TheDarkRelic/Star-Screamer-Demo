@@ -9,6 +9,7 @@ public interface Interfaces
 
 public interface IDamageable
 {
+    int Health { get; }
     void ProcessDamage(int damageAmount);
 }
 

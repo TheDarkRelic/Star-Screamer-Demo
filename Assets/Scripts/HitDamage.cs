@@ -3,25 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class HitDamage : MonoBehaviour, IDamageable
 {
-    public static Action<int> OnHitAction;
+    public static Action<int> onHitAction;
     public int health;
     public bool isDamageable = true;
-    [SerializeField] float _iframeTimer;
-    public Player _player;
-    [SerializeField] SpriteRenderer _shipSrite = null;
-    [SerializeField] PlayerShoot _playerShoot;
-    private InstaniateExplosion _explosionFX;
-    [SerializeField] AudioClip _explosionSFX;
-    
+    [SerializeField] private float iframeTimer;
+    [SerializeField] private SpriteRenderer shipSprite = null;
+    [SerializeField] private PlayerShoot playerShoot;
+    public Player player;
 
-    void Start()
-    {
-        _explosionFX = GetComponent<InstaniateExplosion>();
-        
-    }
+    public int Health { get => health; set => health = value; }
 
     public void ProcessDamage(int damageAmount)
     {
@@ -29,38 +23,38 @@ public class HitDamage : MonoBehaviour, IDamageable
         {
             return;
         }
-        if (!_player.shieldActive)
+        if (!player.shieldActive)
         {
             if (health > 0)
             {
                 StartCoroutine(DamageCoolDown());
-                _playerShoot.laserNumber--;
+                playerShoot.laserNumber--;
                 StartCoroutine(FlashIframes());
                 health -= damageAmount;
                 if (health < 1)
                 {
                     StopAllCoroutines();
-                    _player.DestroyPlayer();
+                    player.DestroyPlayer();
                     var events = FindObjectOfType<EventsList>();
                     events.PlayerDeath.Invoke();
                 }
             }
 
-            OnHitAction(health);
+            onHitAction(health);
         }
         else
         {
-            _player.OnShieldDeactivate?.Invoke();
-            _player.shieldActive = false;
+            player.OnShieldDeactivate?.Invoke();
+            player.shieldActive = false;
             StartCoroutine(DamageCoolDown());
         }
       
     }
 
-    public IEnumerator DamageCoolDown()
+    private IEnumerator DamageCoolDown()
     {
         SetDamageable(false);
-        yield return new WaitForSeconds(_iframeTimer);
+        yield return new WaitForSeconds(iframeTimer);
         SetDamageable(true);
     }
 
@@ -68,9 +62,9 @@ public class HitDamage : MonoBehaviour, IDamageable
     {
         while(!isDamageable)
         {
-            _shipSrite.gameObject.SetActive(false);
+            shipSprite.gameObject.SetActive(false);
             yield return new WaitForSeconds(.04f);
-            _shipSrite.gameObject.SetActive(true);
+            shipSprite.gameObject.SetActive(true);
             yield return new WaitForSeconds(.04f);
         }
         
@@ -80,12 +74,12 @@ public class HitDamage : MonoBehaviour, IDamageable
         isDamageable = state;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         BasicEnemyCollider.OnTriggerAction += ProcessDamage;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         BasicEnemyCollider.OnTriggerAction -= ProcessDamage;
     }

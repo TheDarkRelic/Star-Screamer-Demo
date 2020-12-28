@@ -183,6 +183,28 @@ Transform:
   m_Father: {fileID: 1232719625}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &34712596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4533145066540845415, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+  m_PrefabInstance: {fileID: 1263743343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a995197bfee9e41b84e4b7775b242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &34712597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7272245646803182297, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+  m_PrefabInstance: {fileID: 1263743343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353cfa987d2ec3b41baf6c6dcd6e33a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &86414456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,24 +2192,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89865ef16e3a0eb47bd2d6073556f635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _liveSprites:
+  liveSprites:
   - {fileID: 21300000, guid: 487d6c68e9f3b0342bdfc5382241bbea, type: 3}
   - {fileID: 21300000, guid: 585c5e7553216ad4192a453e7c21b97e, type: 3}
   - {fileID: 21300000, guid: 9b920c999d153b148ae7741fc4aa3670, type: 3}
   - {fileID: 21300000, guid: 684b2dd8c4367fe45b11c9a1af31b980, type: 3}
-  _scoreText: {fileID: 482368087}
-  _highScoreText: {fileID: 1227750292}
-  _livesImage: {fileID: 978383378}
-  _gameOverText: {fileID: 1146127048}
-  _restartText: {fileID: 1234346894}
-  _mainMenuText: {fileID: 1692233238}
-  _readyText: {fileID: 1172957481}
-  _pauseMenuCanvas: {fileID: 3459886}
-  _gameHandler: {fileID: 1232719624}
+  scoreText: {fileID: 482368087}
+  highScoreText: {fileID: 1227750292}
+  livesImage: {fileID: 978383378}
+  gameOverText: {fileID: 1146127048}
+  restartText: {fileID: 1234346894}
+  mainMenuText: {fileID: 1692233238}
+  readyText: {fileID: 1172957481}
+  gameHandler: {fileID: 1232719624}
   gameOver: 0
   score: 0
   highScore: 0
-  player: {fileID: 0}
+  player: {fileID: 34712597}
 --- !u!114 &960617093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2999,6 +3020,26 @@ PrefabInstance:
     - target: {fileID: 411537547, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
       propertyPath: _iframeTimer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 411537547, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: shipSprite
+      value: 
+      objectReference: {fileID: 494239578}
+    - target: {fileID: 411537547, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: iframeTimer
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 411537547, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: playerShoot
+      value: 
+      objectReference: {fileID: 34712596}
+    - target: {fileID: 411537547, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 34712597}
+    - target: {fileID: 411537553, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
+      propertyPath: _crossInput
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3006273548266671840, guid: 2139c3363373ab54faf112fd830b3856, type: 3}
       propertyPath: m_Enabled
@@ -4435,7 +4476,7 @@ MonoBehaviour:
   spawnEnemyMines: 1
   spawnEnemyAnims: 1
   spawnPowerUps: 1
-  _secondTilBossSpawn: 60
+  _secondTilBossSpawn: 120
   _spawnAmount: 3
   spawnable: 1
 --- !u!4 &2035499939

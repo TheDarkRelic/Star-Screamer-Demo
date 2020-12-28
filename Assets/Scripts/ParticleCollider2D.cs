@@ -10,7 +10,7 @@ public class ParticleCollider2D : MonoBehaviour
         var hitDamage = other.GetComponent<HitDamage>();
         if (hitDamage != null && other.gameObject != null)
         {
-            if (this.gameObject.name == "PhotonMissileParticleLocal" || this.gameObject.name == "PhotonMissileParticleLocal")
+            if (this.gameObject.name == "PhotonMissileParticleWorld" || this.gameObject.name == "PhotonMissileParticleLocal")
             {
                 hitDamage.ProcessDamage(1);
             }

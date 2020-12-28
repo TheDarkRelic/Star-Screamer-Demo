@@ -14,16 +14,10 @@ public class SpeedUp : MonoBehaviour, IPowerup
 
     public int AdjustAmount => speedPlus;
 
-    public string PowerUpName => "Speed Up";
-
-    public int PowerUpID => 1;
-
-
     public void ActivatePowerUp()
     {
-        if (_playerMovement != null)
-        {
-            _playerMovement.AdjustSpeed(AdjustAmount);
-        }
+        if (_playerMovement == null)
+            return;
+        _playerMovement.AdjustSpeed(AdjustAmount);
     }
 }

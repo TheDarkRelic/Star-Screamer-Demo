@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InstaniateExplosion : MonoBehaviour
+public class InstantiateExplosion : MonoBehaviour
 {
     public  GameObject explosionFxPreFab;
     public  void InitExplosion(GameObject obj)

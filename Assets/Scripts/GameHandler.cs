@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,33 +7,36 @@ public class GameHandler : MonoBehaviour
     bool _isGameOver;
     [SerializeField] Image _pauseMenuCanvas;
     Animator _pauseAnimator;
+    bool isPaused = false;
 
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
 
         _pauseAnimator = GameObject.Find("Pause_Menu_Panel").GetComponent<Animator>();
-        if (_pauseAnimator == null)
+        if (_pauseAnimator != null)
         {
-            Debug.LogError("Pause Menu Animator is Null");
+            _pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
         }
 
-        _pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            
-            _pauseAnimator.SetBool("isPaused", true);
-            _pauseMenuCanvas.gameObject.SetActive(true);
-            Time.timeScale = 0;
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
         }
 
         if (_isGameOver == true && Input.GetKeyDown(KeyCode.R))
         {
-           string scene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(scene);
+            RestartLevel();
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
@@ -47,6 +48,27 @@ public class GameHandler : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    private static void RestartLevel()
+    {
+        string scene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(scene);
+    }
+
+    private void PauseGame()
+    {
+        isPaused = true;
+        _pauseAnimator.SetBool("isPaused", true);
+        _pauseMenuCanvas.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        _pauseMenuCanvas.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void LoadMainMenu()

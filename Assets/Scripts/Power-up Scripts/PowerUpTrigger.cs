@@ -11,21 +11,20 @@ public class PowerUpTrigger : MonoBehaviour, IScoreable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
+            return;
+        var powerUp = GetComponent<IPowerup>();
+        if (powerUp != null)
         {
-            var powerUp = GetComponent<IPowerup>();
-            if (powerUp != null)
-            {
-                powerUp.ActivatePowerUp();
-                Score(100);
-                AudioSource.PlayClipAtPoint(_powerupSfx, Camera.main.transform.position, sFxVolume);
-                Destroy(this.gameObject);
-            }
+            powerUp.ActivatePowerUp();
+            Score(100);
+            AudioSource.PlayClipAtPoint(_powerupSfx, Camera.main.transform.position, sFxVolume);
+            Destroy(this.gameObject);
+        }
 
-            if (other.CompareTag("EnemyLaser"))
-            {
-                Destroy(other.gameObject);
-            }
+        if (other.CompareTag("EnemyLaser"))
+        {
+            Destroy(other.gameObject);
         }
     }
 

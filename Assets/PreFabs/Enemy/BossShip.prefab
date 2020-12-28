@@ -269,6 +269,9 @@ MonoBehaviour:
   _health: 600
   _hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
   _hitParticleOffset: 0.2
+  _laserSfx: {fileID: 8300000, guid: 5f893ada494a7fd47ade1fb43db46d69, type: 3}
+  _laserSfxVolume: 0.5
+  _shieldTimer: 4
   isDamageable: 0
 --- !u!50 &8914871928903067278
 Rigidbody2D:
@@ -701,7 +704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2581558775419591273, guid: 42c61150638951241a259759c23890b3, type: 3}
       propertyPath: CollisionModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2581558775419591273, guid: 42c61150638951241a259759c23890b3, type: 3}
       propertyPath: looping
@@ -751,11 +754,16 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2581558775419591273, guid: 42c61150638951241a259759c23890b3, type: 3}
+      propertyPath: TriggerModule.enter
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2581558775419591274, guid: 42c61150638951241a259759c23890b3, type: 3}
       propertyPath: m_Name
       value: PhotonMissileParticleLocal
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2581558775419591278, guid: 42c61150638951241a259759c23890b3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 42c61150638951241a259759c23890b3, type: 3}
 --- !u!4 &808285670655070454 stripped
 Transform:
@@ -777,6 +785,18 @@ PrefabInstance:
     - target: {fileID: 3648687605463138794, guid: 760b74c4be1e7534c8d78bfc8d812418, type: 3}
       propertyPath: m_Name
       value: PhotonMissileParticleWorld
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075922040131001449, guid: 760b74c4be1e7534c8d78bfc8d812418, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075922040131001449, guid: 760b74c4be1e7534c8d78bfc8d812418, type: 3}
+      propertyPath: TriggerModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075922040131001449, guid: 760b74c4be1e7534c8d78bfc8d812418, type: 3}
+      propertyPath: TriggerModule.enter
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4693673880183976593, guid: 760b74c4be1e7534c8d78bfc8d812418, type: 3}
       propertyPath: m_LocalPosition.x
@@ -822,7 +842,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5166335450909678835, guid: 760b74c4be1e7534c8d78bfc8d812418, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 760b74c4be1e7534c8d78bfc8d812418, type: 3}
 --- !u!198 &7388820591697916112 stripped
 ParticleSystem:
