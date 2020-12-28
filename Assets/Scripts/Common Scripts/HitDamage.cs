@@ -48,7 +48,7 @@ public class HitDamage : MonoBehaviour, IDamageable
             player.shieldActive = false;
             StartCoroutine(DamageCoolDown());
         }
-      
+
     }
 
     private IEnumerator DamageCoolDown()
@@ -60,14 +60,14 @@ public class HitDamage : MonoBehaviour, IDamageable
 
     private IEnumerator FlashIframes()
     {
-        while(!isDamageable)
+        while (!isDamageable)
         {
             shipSprite.gameObject.SetActive(false);
             yield return new WaitForSeconds(.04f);
             shipSprite.gameObject.SetActive(true);
             yield return new WaitForSeconds(.04f);
         }
-        
+
     }
     private void SetDamageable(bool state)
     {

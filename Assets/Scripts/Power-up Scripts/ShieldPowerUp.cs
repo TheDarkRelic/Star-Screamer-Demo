@@ -10,7 +10,7 @@ public class ShieldPowerUp : MonoBehaviour, IPowerup
 
     public void ActivatePowerUp()
     {
-        var player = FindObjectOfType<Player.Player>();
+        var player = FindObjectOfType<Player>();
         player.shieldActive = true;
         player.OnShieldActivate.Invoke();
     }

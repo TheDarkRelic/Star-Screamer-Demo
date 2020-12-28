@@ -254,6 +254,8 @@ MonoBehaviour:
   _photonMissileParticlesWorld: {fileID: 7388820591697916112}
   _photonShieldParticles: {fileID: 2325954685017279628}
   _photonShieldPointParticle: {fileID: 4225693576924496175}
+  _missileSfx: {fileID: 8300000, guid: 477850680b008bc4aa8a29fa1919c19b, type: 3}
+  _missileSfxVolume: 0.5
 --- !u!114 &760685387
 MonoBehaviour:
   m_ObjectHideFlags: 0

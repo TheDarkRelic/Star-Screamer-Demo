@@ -11,6 +11,8 @@ public class BossAnimEvent : MonoBehaviour
     [SerializeField] ParticleSystem _photonShieldPointParticle;
     private CircleCollider2D _shieldCollider;
     private CircleCollider2D[] _bossCollider;
+    [SerializeField] AudioClip _missileSfx;
+    [SerializeField] float _missileSfxVolume = 0.5f;
 
 
     private void Start()
@@ -25,12 +27,22 @@ public class BossAnimEvent : MonoBehaviour
 
     void FirePhotonMissileLocal()
     {
+        StartCoroutine(DoubleMissileSfx());
         _photonMissileParticlesLocal.Play();
     }
 
     void FirePhotonMissileWorld()
     {
+        PhotonMissileSfx();
         _photonMissileParticlesWorld.Play();
+    }
+
+    private void PhotonMissileSfx() => AudioSource.PlayClipAtPoint(_missileSfx, Camera.main.transform.position, _missileSfxVolume);
+    private IEnumerator DoubleMissileSfx()
+    {
+        PhotonMissileSfx();
+        yield return new WaitForSeconds(.1f);
+        PhotonMissileSfx();
     }
 
     void DeactivateShieldCollider()

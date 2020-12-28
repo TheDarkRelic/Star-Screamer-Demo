@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OptionsTrigger : MonoBehaviour
 {
-    [SerializeField] private Player _player;
     [SerializeField] private HitDamage _hitDamage;
     [SerializeField] private GameObject _explosionFx;
     private bool _isActive;

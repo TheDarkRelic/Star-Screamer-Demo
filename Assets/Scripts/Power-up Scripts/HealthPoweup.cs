@@ -7,7 +7,7 @@ public class HealthPoweup : MonoBehaviour, IPowerup
     [SerializeField] int _maxHealth;
     public void ActivatePowerUp()
     {
-        var player = FindObjectOfType<Player.Player>();
+        var player = FindObjectOfType<Player>();
 
         if (player == null)
             return;

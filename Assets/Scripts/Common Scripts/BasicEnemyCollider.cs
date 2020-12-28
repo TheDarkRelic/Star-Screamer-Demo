@@ -9,7 +9,6 @@ public class BasicEnemyCollider : MonoBehaviour
 
     [SerializeField] int _damageAmount;
     [SerializeField] GameObject _hitParticles;
-    [HideInInspector] public Player _player;
     public Enemy enemy;
     private void OnTriggerEnter2D(Collider2D other)
     {

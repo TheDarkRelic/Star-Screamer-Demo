@@ -17,7 +17,6 @@ public  class UIHandler : MonoBehaviour, IScoreable
     public bool gameOver;
     public int score = 0;
     public int highScore = 0;
-    public Player player;
 
     private void Awake()
     {

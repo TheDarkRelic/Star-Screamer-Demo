@@ -9,7 +9,7 @@ public class Shield : MonoBehaviour
 
     void ActivateShield()
     {
-        var player = FindObjectOfType<Player.Player>();
+        var player = FindObjectOfType<Player>();
         player.OnShieldActivate.Invoke();
         var hitDamage = GetComponent<HitDamage>();
         hitDamage.isDamageable = false;

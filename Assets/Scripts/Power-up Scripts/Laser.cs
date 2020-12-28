@@ -11,6 +11,7 @@ public class Laser : MonoBehaviour
     public float laserVolume = 0.2f;
     bool _isEnemyLaser = false;
     private HitDamage _hitDamage;
+    private Player _player;
 
     void Start()
     {
@@ -66,7 +67,7 @@ public class Laser : MonoBehaviour
     {
         if (other.CompareTag("Player") && _isEnemyLaser)
         {
-            Player.Player player = other.GetComponent<Player.Player>();
+            var player = other.GetComponent<Player>();
             if (player != null)
             {
                 if (_hitDamage != null)

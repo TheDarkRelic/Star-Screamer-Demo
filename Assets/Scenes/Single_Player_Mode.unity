@@ -2155,7 +2155,6 @@ MonoBehaviour:
   gameOver: 0
   score: 0
   highScore: 0
-  player: {fileID: 34712597}
 --- !u!114 &960617093
 MonoBehaviour:
   m_ObjectHideFlags: 0
