@@ -620,7 +620,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.85
+  - time: 0.28333333
+    functionName: LaserCanonSfx
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8666667
     functionName: FireLaserCanon
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -669,15 +676,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 7.3333335
-    functionName: ActivatePhotonShield
+  - time: 6.9
+    functionName: LaserCanonSfx
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 7.3166666
+    functionName: FireLaserCanon
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 7.3333335
-    functionName: FireLaserCanon
+    functionName: ActivatePhotonShield
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

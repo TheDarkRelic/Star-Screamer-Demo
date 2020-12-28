@@ -1,38 +1,37 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class Enemy : MonoBehaviour, IDamageable
+namespace Enemy_Scripts
 {
-    public static Action<int> OnEnemyDamage;
-    public static Action<GameObject> OnEnemyDestroy;
-    public int Health { get => _enemyHealth; set => _enemyHealth = value; }
-    [SerializeField] private int _enemyHealth = 5;
-    [SerializeField] int scoreAmount;
-    private InstantiateExplosion _explosionFX;
-
-    private void Awake()
+    public class Enemy : MonoBehaviour, IDamageable
     {
-        _explosionFX = GetComponent<InstantiateExplosion>();
-    }
+        public static Action<int> OnEnemyDamage;
+        public static Action<GameObject> OnEnemyDestroy;
+        public int Health { get => _enemyHealth; set => _enemyHealth = value; }
+        [SerializeField] private int _enemyHealth = 5;
+        [SerializeField] int scoreAmount;
+        private InstantiateExplosion _explosionFX;
 
-    public void ProcessDamage(int damageAmount)
-    {
-        _enemyHealth -= damageAmount;
-
-        if (_enemyHealth < 1)
+        private void Awake()
         {
-            _enemyHealth = 0;
-            DestroyEnemy();
+            _explosionFX = GetComponent<InstantiateExplosion>();
         }
-    }
-    public void DestroyEnemy()
-    {
-        _explosionFX.InitExplosion(this.gameObject);
-        EventsList.OnScoreAction?.Invoke(scoreAmount);
-        Destroy(this.gameObject);
+
+        public void ProcessDamage(int damageAmount)
+        {
+            _enemyHealth -= damageAmount;
+
+            if (_enemyHealth < 1)
+            {
+                _enemyHealth = 0;
+                DestroyEnemy();
+            }
+        }
+        public void DestroyEnemy()
+        {
+            _explosionFX.InitExplosion(this.gameObject);
+            EventsList.OnScoreAction?.Invoke(scoreAmount);
+            Destroy(this.gameObject);
+        }
     }
 }

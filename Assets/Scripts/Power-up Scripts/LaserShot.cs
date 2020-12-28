@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LaserShot : MonoBehaviour, IPowerup
 {
-    private Player _player;
+    private Player.Player _player;
 
     void Awake()
     {
-        _player = FindObjectOfType<Player>();
+        _player = FindObjectOfType<Player.Player>();
     }
 
     public void ActivatePowerUp()

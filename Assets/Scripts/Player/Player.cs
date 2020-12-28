@@ -1,60 +1,63 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Player : MonoBehaviour
+namespace Player
 {
-    public UnityEvent OnShieldDeactivate;
-    public UnityEvent OnShieldActivate;
-    public PlayerShoot playerShoot;
-    public PlayerMovement playerMove;
-    public SetBounds playerBounds;
-    public bool shieldActive;
-    public bool optionsActive;
-    public bool movementActive;
-    public HitDamage hitDamage;
-
-    void Awake()
+    public class Player : MonoBehaviour
     {
-        movementActive = true;
-        shieldActive = false;
-        optionsActive = false;
-    }
+        public UnityEvent OnShieldDeactivate;
+        public UnityEvent OnShieldActivate;
+        public PlayerShoot playerShoot;
+        public PlayerMovement playerMove;
+        public SetBounds playerBounds;
+        public bool shieldActive;
+        public bool optionsActive;
+        public bool movementActive;
+        public HitDamage hitDamage;
 
-    void FixedUpdate()
-    {
-        if (movementActive)
+        void Awake()
         {
-            playerBounds.ObjectBounds();
-            playerMove.CalculateMovement();
-            ArmLaser();
+            movementActive = true;
+            shieldActive = false;
+            optionsActive = false;
         }
-    }
 
-    private void ArmLaser()
-    {
-        if (Input.GetKey(KeyCode.Space) && Time.time > playerShoot._canFire)
-            playerShoot.FireLaser();
-    }
-
-    public void DestroyPlayer()
-    {
-        movementActive = false;
-        var playerColliders = GetComponents<Collider2D>();
-        var movementScript = GetComponent<PlayerMovement>();
-        foreach (var collider in playerColliders)
+        void FixedUpdate()
         {
-            collider.enabled = false;
+            if (movementActive)
+            {
+                playerBounds.ObjectBounds();
+                playerMove.CalculateMovement();
+                ArmLaser();
+            }
         }
-        Destroy(movementScript);
-        EventsList.OnPlayerDeath?.Invoke();
 
-
-        var sprites = GetComponentsInChildren<SpriteRenderer>();
-        foreach (var sprite in sprites)
+        private void ArmLaser()
         {
-            sprite.enabled = false;
+            if (Input.GetKey(KeyCode.Space) && Time.time > playerShoot._canFire)
+                playerShoot.FireLaser();
         }
-    }
 
+        public void DestroyPlayer()
+        {
+            movementActive = false;
+            var playerColliders = GetComponents<Collider2D>();
+            var movementScript = GetComponent<PlayerMovement>();
+            foreach (var collider in playerColliders)
+            {
+                collider.enabled = false;
+            }
+            Destroy(movementScript);
+            EventsList.OnPlayerDeath?.Invoke();
+
+
+            var sprites = GetComponentsInChildren<SpriteRenderer>();
+            foreach (var sprite in sprites)
+            {
+                sprite.enabled = false;
+            }
+        }
+
+    }
 }
 

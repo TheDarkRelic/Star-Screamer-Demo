@@ -269,7 +269,7 @@ MonoBehaviour:
   _health: 600
   _hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
   _hitParticleOffset: 0.2
-  _laserSfx: {fileID: 8300000, guid: 5f893ada494a7fd47ade1fb43db46d69, type: 3}
+  _laserSfx: {fileID: 8300000, guid: f4958094f38a35f49b45fed1e88b8373, type: 3}
   _laserSfxVolume: 0.5
   _shieldTimer: 4
   isDamageable: 0
@@ -435,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588011533210933502, guid: e7bf414814e967b48aa47275547b8504, type: 3}
       propertyPath: lengthInSec
-      value: 3
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8588011533210933502, guid: e7bf414814e967b48aa47275547b8504, type: 3}
       propertyPath: prewarm

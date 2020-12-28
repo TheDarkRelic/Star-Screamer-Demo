@@ -66,7 +66,7 @@ public class Laser : MonoBehaviour
     {
         if (other.CompareTag("Player") && _isEnemyLaser)
         {
-            Player player = other.GetComponent<Player>();
+            Player.Player player = other.GetComponent<Player.Player>();
             if (player != null)
             {
                 if (_hitDamage != null)
