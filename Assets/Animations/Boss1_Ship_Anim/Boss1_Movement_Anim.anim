@@ -697,7 +697,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 7.35
+  - time: 7.366667
     functionName: BossShieldCoolDown
     data: 
     objectReferenceParameter: {fileID: 0}

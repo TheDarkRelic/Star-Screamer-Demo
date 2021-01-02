@@ -8,16 +8,12 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            LoadSinglePlayerGame();
-        }
+        if (Input.GetKeyDown(KeyCode.Return)) LoadSinglePlayerGame();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
     }
 
-    public void LoadSinglePlayerGame()
-    {
-        SceneManager.LoadScene(1);
-    }
+    public void LoadSinglePlayerGame() => SceneManager.LoadScene(1);
 
 }
 

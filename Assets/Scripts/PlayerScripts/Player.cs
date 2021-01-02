@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public bool optionsActive;
     public bool movementActive;
     public HitDamage hitDamage;
+    [SerializeField] Collider2D playerCollider;
 
     void Awake()
     {
@@ -39,12 +40,8 @@ public class Player : MonoBehaviour
     public void DestroyPlayer()
     {
         movementActive = false;
-        var playerColliders = GetComponents<Collider2D>();
         var movementScript = GetComponent<PlayerMovement>();
-        foreach (var collider in playerColliders)
-        {
-            collider.enabled = false;
-        }
+        playerCollider.enabled = false;
         Destroy(movementScript);
         EventsList.OnPlayerDeath?.Invoke();
 
@@ -56,5 +53,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ColliderColission()
+    {
+        playerCollider.isTrigger = false;
+    }
+
+    private void OnEnable()
+    {
+        BossAnimEvent.onBossEntry += ColliderColission;
+    }
+
+    private void OnDisable()
+    {
+        BossAnimEvent.onBossEntry -= ColliderColission;
+    }
 }
 

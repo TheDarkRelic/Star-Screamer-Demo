@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -34,20 +35,11 @@ public class GameHandler : MonoBehaviour
             }
         }
 
-        if (_isGameOver == true && Input.GetKeyDown(KeyCode.R))
-        {
-            RestartLevel();
-        }
+        if (_isGameOver == true && Input.GetKeyDown(KeyCode.R)) RestartLevel();
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            LoadMainMenu();
-        }
+        if (_isGameOver == true && Input.GetKeyDown(KeyCode.Return)) LoadMainMenu();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
     }
 
     private static void RestartLevel()
@@ -79,5 +71,25 @@ public class GameHandler : MonoBehaviour
     public void GameOver()
     {
         _isGameOver = true;
+    }
+
+    private void LoadingEndScreen()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void LoadEndingScreen()
+    {
+        Invoke("LoadingEndScreen", 1);
+    }
+
+    private void OnEnable()
+    {
+        BossAnimEvent.onBossDestroy += LoadEndingScreen;
+    }
+
+    private void OnDisable()
+    {
+        BossAnimEvent.onBossDestroy -= LoadEndingScreen;
     }
 }

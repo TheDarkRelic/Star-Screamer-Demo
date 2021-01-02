@@ -5,8 +5,6 @@ using UnityEngine;
 public class OptionsTrigger : MonoBehaviour
 {
     [SerializeField] private HitDamage _hitDamage;
-    [SerializeField] private GameObject _explosionFx;
-    private bool _isActive;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +12,6 @@ public class OptionsTrigger : MonoBehaviour
         {
             Destroy(other.gameObject);
             _hitDamage.ProcessDamage(0);
-            Instantiate(_explosionFx, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
         }
     }

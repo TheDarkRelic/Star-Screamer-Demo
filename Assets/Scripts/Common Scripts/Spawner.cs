@@ -7,20 +7,18 @@ public class Spawner : MonoBehaviour
     public GameObject[] enemies = new GameObject[2];
     public GameObject[] spawnPoints = new GameObject[3];
     [SerializeField] GameObject[] _powerups;
-    [SerializeField] GameObject _enemyCapsule;
+    [SerializeField] GameObject _enemyCapsule = null;
     [SerializeField] GameObject _enemyAnimCapsule;
-    [SerializeField] float _minSpawnPowerup = 3f;
-    [SerializeField] float _maxSpawnPowerup = 7f;
     [SerializeField] float _enemyAnimeWaitTime = 5f;
-    private bool _stopSpawning = false;
     private Enemy _enemy;
+    private bool _stopSpawning = false;
     public bool spawnAsteroids;
     public bool spawnEnemyMines;
     public bool spawnEnemyAnims;
-    public bool spawnPowerUps;
-    [SerializeField] private int _secondTilBossSpawn = 60;
     [SerializeField] private int _spawnAmount = 3;
+    public bool spawnPowerUps;
     public bool spawnable = true;
+    [SerializeField] private int _secondTilBossSpawn = 60;
     void Awake()
     {
         _enemy = FindObjectOfType<Enemy>();
@@ -31,10 +29,23 @@ public class Spawner : MonoBehaviour
     }
     public void StartSpawning()
     {
+        StartCoroutine(IncrimentSpawnAmount());
         StartCoroutine(SpawnBoss());
         if(spawnAsteroids) StartCoroutine(SpawnAsteroid());
         if (spawnEnemyMines) StartCoroutine(SpawnMineEnemy());
         if (spawnEnemyAnims) StartCoroutine(SpawnShipEnemyAnim());
+    }
+
+    private IEnumerator IncrimentSpawnAmount()
+    {
+        yield return new WaitForSeconds(20);
+        while (true)
+        {
+            _spawnAmount++;
+            yield return new WaitForSeconds(30);
+        }
+        
+        
     }
 
     IEnumerator SpawnAsteroid()

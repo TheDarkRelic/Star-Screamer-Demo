@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BossAnimEvent : MonoBehaviour
 {
-    [SerializeField] ParticleSystem _photonLaserParticles;
+    public static Action onBossDestroy;
+    public static Action onBossEntry;
+    public ParticleSystem _photonLaserParticles;
     [SerializeField] ParticleSystem _photonMissileParticlesLocal;
     [SerializeField] ParticleSystem _photonMissileParticlesWorld;
     [SerializeField] ParticleSystem _photonShieldParticles;
@@ -14,35 +17,58 @@ public class BossAnimEvent : MonoBehaviour
     [SerializeField] AudioClip _missileSfx;
     [SerializeField] float _missileSfxVolume = 0.5f;
 
-
     private void Start()
     {
         _shieldCollider = GameObject.Find("Boss1_shield").GetComponent<CircleCollider2D>();
         _bossCollider = GetComponents<CircleCollider2D>();
+        onBossEntry?.Invoke();
     }
+
+    private void PlayWarning()
+    {
+        var warning = GameObject.Find("Warning").GetComponent<Animator>();
+        warning.SetTrigger("warning");
+    }
+
     void FireLaserCanon()
     {
-        _photonLaserParticles.Play();
+        if (Boss.isAlive)
+        {
+            _photonLaserParticles.Play();
+        }
+        
     }
 
     void FirePhotonMissileLocal()
     {
-        StartCoroutine(DoubleMissileSfx());
-        _photonMissileParticlesLocal.Play();
+        if (Boss.isAlive)
+        {
+            StartCoroutine(DoubleMissileSfx());
+            _photonMissileParticlesLocal.Play();
+        }
+        
     }
 
     void FirePhotonMissileWorld()
     {
-        PhotonMissileSfx();
-        _photonMissileParticlesWorld.Play();
+        if (Boss.isAlive)
+        {
+            PhotonMissileSfx();
+            _photonMissileParticlesWorld.Play();
+        }
+        
     }
 
     private void PhotonMissileSfx() => AudioSource.PlayClipAtPoint(_missileSfx, Camera.main.transform.position, _missileSfxVolume);
     private IEnumerator DoubleMissileSfx()
     {
-        PhotonMissileSfx();
-        yield return new WaitForSeconds(.1f);
-        PhotonMissileSfx();
+        if (Boss.isAlive)
+        {
+            PhotonMissileSfx();
+            yield return new WaitForSeconds(.1f);
+            PhotonMissileSfx();
+        }
+        
     }
 
     void DeactivateShieldCollider()
@@ -84,11 +110,29 @@ public class BossAnimEvent : MonoBehaviour
 
     IEnumerator ActivatePhotonShield()
     {
-        _shieldCollider.enabled = true;
-        _photonShieldParticles.Play();
-        _photonShieldPointParticle.Play();
-        yield return new WaitForSeconds(3);
-        _shieldCollider.enabled = false;
+        if (Boss.isAlive)
+        {
+            _shieldCollider.enabled = true;
+            _photonShieldParticles.Play();
+            _photonShieldPointParticle.Play();
+            yield return new WaitForSeconds(4);
+            _shieldCollider.enabled = false;
+        }
 
+    }
+
+    private void OnDestroy()
+    {
+        onBossDestroy?.Invoke();
+    }
+
+    private void OnEnable()
+    {
+        onBossEntry += PlayWarning;
+    }
+
+    private void OnDisable()
+    {
+        onBossEntry -= PlayWarning;
     }
 }

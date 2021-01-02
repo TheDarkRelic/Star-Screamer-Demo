@@ -5,8 +5,6 @@ using UnityEngine;
 public class OptionsObject : MonoBehaviour
 {
     [SerializeField] private GameObject _missilePreFab;
-    [SerializeField] float _fireRate = 2.0f;
-    [SerializeField] private float _delay = 1f;
     private GameObject _missile;
     private float _counter = 1;
     [SerializeField] Transform _firePointLeft;
