@@ -10,7 +10,6 @@ public class PropulsionGFX : MonoBehaviour
     void Update()
     {
         ScaleThrusters();
-
     }
 
     private void ScaleThrusters()
