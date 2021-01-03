@@ -5,46 +5,47 @@ using UnityEngine.SceneManagement;
 public class Boss : MonoBehaviour, IDamageable
 {
     public GameObject[] expSpawnPoints = new GameObject[5];
-    [SerializeField] private int _health = 500;
-    public int Health { get => _health; set => _health = value; }
-    [SerializeField] InstantiateExplosion explosion;
-    [SerializeField] GameObject _hitParticles;
-    [SerializeField] float _hitParticleOffset;
-    [SerializeField] AudioClip _laserSfx;
-    [SerializeField] float _laserSfxVolume = 0.5f;
-    [SerializeField] float _shieldTimer = 4;
-    public bool isDamageable;
-    public static bool isAlive;
-    [SerializeField] float _timeBetweenExplosion;
-    [SerializeField] SpriteRenderer bossSprite;
-    private int _pointToSpawnExplosion;
-    [SerializeField] int scoreAmount;
-    private bool isScorable = true;
-    [SerializeField] BossAnimEvent bossAnim;
+    [SerializeField] private InstantiateExplosion explosion = null;
+    [SerializeField] private GameObject _hitParticles = null;
+    [SerializeField] private AudioClip _laserSfx = null;
+    [SerializeField] private BossAnimEvent bossAnim = null;
+    [SerializeField] private SpriteRenderer bossSprite = null;
+    [SerializeField] private float hitParticleOffset = 0.35f;
+    [SerializeField] private float _laserSfxVolume = 0.5f;
+    [SerializeField] private float shieldTimer = 4f;
+    [SerializeField] private float timeBetweenExplosion = 0f;
+    [SerializeField] private int scoreAmount = 1500;
+    [SerializeField] private int health = 300;
+    public int Health { get => health; set => health = value; }
+    public bool isDamageable = false;
+    public static bool isAlive = false;
+    private bool isScorable = false;
+
     void Start()
     {
         isAlive = true;
-        _pointToSpawnExplosion = Random.Range(0, expSpawnPoints.Length);
         isDamageable = false;
+        isScorable = true;
     } 
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         var x = other.transform.position.x;
-        var y = other.transform.position.y + _hitParticleOffset;
+        var y = other.transform.position.y + hitParticleOffset;
 
         if (other.CompareTag("Laser"))
         {
+            var laser = other.gameObject.GetComponent<Laser>();
             Instantiate(_hitParticles, new Vector2(x, y), Quaternion.identity);
             Destroy(other.gameObject);
-            if (isDamageable) ProcessDamage(1);
+            if (isDamageable) ProcessDamage(laser.damageAmount);
         }
         
         if (other.CompareTag("Player"))
         {
             var damage = other.gameObject.GetComponent<HitDamage>();
-            if (damage != null) damage.ProcessDamage(3);
+            if (damage != null) damage.ProcessDamage(damage.health);
         }
 
         /*if (!other.CompareTag("Missile"))
@@ -55,8 +56,8 @@ public class Boss : MonoBehaviour, IDamageable
 
     public void ProcessDamage(int damageAmount)
     {
-        _health -= damageAmount;
-        if (_health <= 0)
+        health -= damageAmount;
+        if (health <= 0)
         {
             var anim = GetComponent<Animator>();
             Destroy(anim);
@@ -85,8 +86,8 @@ public class Boss : MonoBehaviour, IDamageable
         foreach (var point in expSpawnPoints)
         { 
             explosion.InitExplosion(point);
-            Time.timeScale -= .08f;
-            yield return new WaitForSeconds(_timeBetweenExplosion);
+            Time.timeScale -= .05f;
+            yield return new WaitForSeconds(timeBetweenExplosion);
         }
     }
 
@@ -96,7 +97,7 @@ public class Boss : MonoBehaviour, IDamageable
     private IEnumerator BossShieldCoolDown()
     {
         SetNotDamageable();
-        yield return new WaitForSeconds(_shieldTimer);
+        yield return new WaitForSeconds(shieldTimer);
         SetDamageable();
     }
 

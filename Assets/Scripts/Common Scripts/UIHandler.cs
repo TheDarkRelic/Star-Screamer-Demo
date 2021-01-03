@@ -5,15 +5,15 @@ using UnityEngine.UI;
 public  class UIHandler : MonoBehaviour, IScoreable
 {
 
-    [SerializeField] private Sprite[] liveSprites;
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text highScoreText;
-    [SerializeField] private Image livesImage;
-    [SerializeField] private Text gameOverText;
-    [SerializeField] private Text restartText;
-    [SerializeField] private Text mainMenuText;
-    [SerializeField] private Text readyText;
-    [SerializeField] private GameHandler gameHandler;
+    [SerializeField] private Sprite[] liveSprites = null;
+    [SerializeField] private Text scoreText = null;
+    [SerializeField] private Text highScoreText = null;
+    [SerializeField] private Image livesImage = null;
+    [SerializeField] private Text gameOverText = null;
+    [SerializeField] private Text restartText = null;
+    [SerializeField] private Text mainMenuText = null;
+    [SerializeField] private Text readyText = null;
+    [SerializeField] private GameHandler gameHandler = null;
     public bool gameOver;
     public int score = 0;
     public int highScore = 0;
@@ -57,7 +57,7 @@ public  class UIHandler : MonoBehaviour, IScoreable
 
     }
 
-    private void CheckForHighScore()
+    public void CheckForHighScore()
     {
         StartCoroutine(ProcessHighScore());
     }

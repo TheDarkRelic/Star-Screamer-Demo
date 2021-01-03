@@ -10,10 +10,10 @@ public class HitDamage : MonoBehaviour, IDamageable
     public static Action<int> onHitAction;
     public int health;
     public bool isDamageable = true;
-    [SerializeField] private float iframeTimer;
+    [SerializeField] private float iframeTimer = 1.5f;
     [SerializeField] private SpriteRenderer shipSprite = null;
-    [SerializeField] private PlayerShoot playerShoot;
-    public Player player;
+    [SerializeField] private PlayerShoot playerShoot = null;
+    public Player player = null;
 
     public int Health { get => health; set => health = value; }
 
@@ -27,28 +27,42 @@ public class HitDamage : MonoBehaviour, IDamageable
         {
             if (health > 0)
             {
-                StartCoroutine(DamageCoolDown());
-                playerShoot.laserNumber--;
-                StartCoroutine(FlashIframes());
-                health -= damageAmount;
+                PlayerHit(damageAmount);
+
                 if (health < 1)
                 {
-                    StopAllCoroutines();
-                    player.DestroyPlayer();
-                    var events = FindObjectOfType<EventsList>();
-                    events.PlayerDeath.Invoke();
+                    DestroyPlayer();
                 }
             }
-
             onHitAction(health);
         }
         else
         {
-            player.OnShieldDeactivate?.Invoke();
-            player.shieldActive = false;
-            StartCoroutine(DamageCoolDown());
+            DeactivateShield();
         }
+    }
 
+    private void DeactivateShield()
+    {
+        player.OnShieldDeactivate?.Invoke();
+        player.shieldActive = false;
+        StartCoroutine(DamageCoolDown());
+    }
+
+    private void DestroyPlayer()
+    {
+        StopAllCoroutines();
+        player.DestroyPlayer();
+        var events = FindObjectOfType<EventsList>();
+        events.PlayerDeath.Invoke();
+    }
+
+    private void PlayerHit(int damageAmount)
+    {
+        StartCoroutine(DamageCoolDown());
+        playerShoot.laserNumber--;
+        StartCoroutine(FlashIframes());
+        health -= damageAmount;
     }
 
     private IEnumerator DamageCoolDown()

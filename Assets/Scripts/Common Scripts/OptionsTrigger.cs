@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OptionsTrigger : MonoBehaviour
 {
-    [SerializeField] private HitDamage _hitDamage;
+    [SerializeField] private HitDamage _hitDamage = null;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

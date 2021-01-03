@@ -170,9 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a56a944d69a3347b8f7c8290835496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: -2436343016565033542}
+  enemy: {fileID: -2436343016565033542}
   _targetGetter: {fileID: 5917448174767052088}
-  _speed: 5
+  speed: 5
 --- !u!114 &-3616425292517825946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,9 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd51c7f48ab0b1044bd39d80132a29b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 1
-  _hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
-  _player: {fileID: 0}
+  damageAmount: 1
+  hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
   enemy: {fileID: -2436343016565033542}
 --- !u!58 &7026195394955037281
 CircleCollider2D:

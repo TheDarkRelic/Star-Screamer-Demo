@@ -289,18 +289,18 @@ MonoBehaviour:
   - {fileID: 9142407358940489436}
   - {fileID: 3069831436456746660}
   - {fileID: 3256069774105028810}
-  _health: 300
   explosion: {fileID: 808285669860954349}
   _hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
-  _hitParticleOffset: 0.2
   _laserSfx: {fileID: 8300000, guid: f4958094f38a35f49b45fed1e88b8373, type: 3}
-  _laserSfxVolume: 0.5
-  _shieldTimer: 4
-  isDamageable: 0
-  _timeBetweenExplosion: 0.3
-  bossSprite: {fileID: 808285669289636649}
-  scoreAmount: 1500
   bossAnim: {fileID: 1467016237}
+  bossSprite: {fileID: 808285669289636649}
+  hitParticleOffset: 0.35
+  _laserSfxVolume: 0.5
+  shieldTimer: 4
+  timeBetweenExplosion: 0
+  scoreAmount: 1500
+  health: 300
+  isDamageable: 0
 --- !u!50 &8914871928903067278
 Rigidbody2D:
   serializedVersion: 4

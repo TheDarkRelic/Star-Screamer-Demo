@@ -5,14 +5,14 @@ public class Player : MonoBehaviour
 {
     public UnityEvent OnShieldDeactivate;
     public UnityEvent OnShieldActivate;
-    public PlayerShoot playerShoot;
-    public PlayerMovement playerMove;
-    public SetBounds playerBounds;
-    public bool shieldActive;
-    public bool optionsActive;
-    public bool movementActive;
-    public HitDamage hitDamage;
-    [SerializeField] Collider2D playerCollider;
+    public PlayerShoot playerShoot = null;
+    public PlayerMovement playerMove = null;
+    public SetBounds playerBounds = null;
+    public bool shieldActive = false;
+    public bool optionsActive = false;
+    public bool movementActive = false;
+    public HitDamage hitDamage = null;
+    [SerializeField] Collider2D playerCollider = null;
 
     void Awake()
     {
@@ -33,8 +33,13 @@ public class Player : MonoBehaviour
 
     private void ArmLaser()
     {
-        if (Input.GetKey(KeyCode.Space) && Time.time > playerShoot._canFire)
-            playerShoot.FireLaser();
+        if (Input.GetButton("Fire1"))
+        {
+            if (Time.time > playerShoot._canFire)
+            {
+                playerShoot.FireLaser();
+            }
+        }    
     }
 
     public void DestroyPlayer()

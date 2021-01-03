@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Explosion : MonoBehaviour
 {
-    public AudioClip _explosionSfx;
-    [SerializeField] private float _ExplosionVolume;
+    private List<int> Samples = new List<int>();
+    public AudioClip explosionSfx = null;
+    [SerializeField] private float explosionVolume = 0.3f;
 
-    void Start() => PlayExplosionAudio(_explosionSfx);
+    void Start() => PlayExplosionAudio(explosionSfx);
 
     private void PlayExplosionAudio(AudioClip clip)
     {
         var cameraPos = Camera.main.transform.position;
-        AudioSource.PlayClipAtPoint(clip, cameraPos, _ExplosionVolume);
+        AudioSource.PlayClipAtPoint(clip, cameraPos, explosionVolume);
     }
 }

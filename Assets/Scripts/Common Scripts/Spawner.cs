@@ -6,9 +6,9 @@ public class Spawner : MonoBehaviour
 {
     public GameObject[] enemies = new GameObject[2];
     public GameObject[] spawnPoints = new GameObject[3];
-    [SerializeField] GameObject[] _powerups;
-    [SerializeField] GameObject _enemyCapsule = null;
-    [SerializeField] GameObject _enemyAnimCapsule;
+    [SerializeField] private GameObject[] _powerups = null;
+    [SerializeField] private GameObject _enemyCapsule = null;
+    [SerializeField] private GameObject _enemyAnimCapsule = null;
     [SerializeField] float _enemyAnimeWaitTime = 5f;
     private Enemy _enemy;
     private bool _stopSpawning = false;
@@ -19,14 +19,12 @@ public class Spawner : MonoBehaviour
     public bool spawnPowerUps;
     public bool spawnable = true;
     [SerializeField] private int _secondTilBossSpawn = 60;
-    void Awake()
-    {
-        _enemy = FindObjectOfType<Enemy>();
-    }
-    void Start()
-    {
-        StartSpawning();
-    }
+
+
+    void Awake() => _enemy = FindObjectOfType<Enemy>();
+
+    void Start() => StartSpawning();
+
     public void StartSpawning()
     {
         StartCoroutine(IncrimentSpawnAmount());
@@ -44,8 +42,6 @@ public class Spawner : MonoBehaviour
             _spawnAmount++;
             yield return new WaitForSeconds(30);
         }
-        
-        
     }
 
     IEnumerator SpawnAsteroid()
@@ -73,7 +69,7 @@ public class Spawner : MonoBehaviour
                 var randomParent = Random.Range(0, spawnPoints.Length);
                 GameObject newEnemy = (GameObject)Instantiate(enemies[randomAnim], transform.position, Quaternion.identity);
                 newEnemy.transform.parent =spawnPoints[randomParent].transform;
-                yield return new WaitForSeconds(1.2f);
+                yield return new WaitForSeconds(2f);
             }
             
             yield return new WaitForSeconds(_enemyAnimeWaitTime);
@@ -103,7 +99,6 @@ public class Spawner : MonoBehaviour
             yield return new WaitForEndOfFrame();
             spawnable = true;
         }
-       
     }
 
     IEnumerator SpawnBoss()
@@ -113,9 +108,6 @@ public class Spawner : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void OnPlayerDeath()
-    {
-        _stopSpawning = true;
-    }
+    public void OnPlayerDeath() => _stopSpawning = true;
 }
  

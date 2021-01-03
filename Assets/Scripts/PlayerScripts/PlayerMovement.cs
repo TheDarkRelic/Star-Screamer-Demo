@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void CalculateMovement()
     {
-        var x = Input.GetAxis("P1Horizontal");
-        var y = Input.GetAxis("P1Vertical");
+        var x = Input.GetAxis("Horizontal");
+        var y = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(x, y, 0);
         transform.Translate(direction * speed * Time.deltaTime);
 

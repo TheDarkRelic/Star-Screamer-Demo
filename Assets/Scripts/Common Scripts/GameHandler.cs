@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class GameHandler : MonoBehaviour
 {
     bool _isGameOver;
-    [SerializeField] Image _pauseMenuCanvas;
-    Animator _pauseAnimator;
+    [SerializeField] Image _pauseMenuCanvas= null;
+    [SerializeField] UIHandler uiHandler = null;
+    Animator _pauseAnimator = null;
     bool isPaused = false;
 
     private void Start()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.GetActiveScene();
 
         _pauseAnimator = GameObject.Find("Pause_Menu_Panel").GetComponent<Animator>();
         if (_pauseAnimator != null)
@@ -23,7 +24,8 @@ public class GameHandler : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetButtonDown("Cancel") && isPaused) LoadMainMenu();
+        if (Input.GetButtonDown("Pause"))
         {
             if (isPaused)
             {
@@ -32,19 +34,21 @@ public class GameHandler : MonoBehaviour
             else
             {
                 PauseGame();
+                
             }
         }
 
-        if (_isGameOver == true && Input.GetKeyDown(KeyCode.R)) RestartLevel();
+        if (_isGameOver == true && Input.GetButtonDown("Cancel")) RestartLevel();
 
-        if (_isGameOver == true && Input.GetKeyDown(KeyCode.Return)) LoadMainMenu();
+        if (_isGameOver == true && Input.GetButtonDown("Submit")) LoadMainMenu();
 
-        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+        if (Input.GetButtonDown("Cancel")) Application.Quit();
     }
 
-    private static void RestartLevel()
+    public void RestartLevel()
     {
-        string scene = SceneManager.GetActiveScene().name;
+        uiHandler.CheckForHighScore();
+        var scene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(scene);
     }
 
@@ -65,6 +69,7 @@ public class GameHandler : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        uiHandler.CheckForHighScore();
         SceneManager.LoadScene("Main_Menu");
     }
 
@@ -75,6 +80,7 @@ public class GameHandler : MonoBehaviour
 
     private void LoadingEndScreen()
     {
+        uiHandler.CheckForHighScore();
         SceneManager.LoadScene(2);
     }
 

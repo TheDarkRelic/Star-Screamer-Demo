@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthPoweup : MonoBehaviour, IPowerup
 {
-    [SerializeField] int _maxHealth;
+    [SerializeField] private int _maxHealth;
     public void ActivatePowerUp()
     {
         var player = FindObjectOfType<Player>();

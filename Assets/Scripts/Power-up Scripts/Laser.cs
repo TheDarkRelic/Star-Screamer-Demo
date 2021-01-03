@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    [SerializeField] AudioClip _audioClip;
-    [SerializeField] float _speed = 8f;
-    [SerializeField] private int _damageAmount = 1;
+    [SerializeField] AudioClip _audioClip = null;
+    [SerializeField] float _speed = 8.0f;
+    public int damageAmount;
     public float laserVolume = 0.2f;
-    bool _isEnemyLaser = false;
-    private HitDamage _hitDamage;
-    private Player _player;
+    private bool _isEnemyLaser = false;
+    private HitDamage _hitDamage = null;
+    private Player _player = null;
 
     void Start()
     {
@@ -20,14 +20,8 @@ public class Laser : MonoBehaviour
     }
     void Update()
     {
-        if (_isEnemyLaser == false)
-        {
-            MoveUp();
-        }
-        else
-        {
-            MoveDown();
-        }
+        if (_isEnemyLaser == false) MoveUp();
+        else MoveDown();
     }
 
     private void MoveDown()
@@ -79,7 +73,7 @@ public class Laser : MonoBehaviour
                     }
                     else
                     {
-                        BasicEnemyCollider.OnTriggerAction?.Invoke(_damageAmount);
+                        BasicEnemyCollider.OnTriggerAction?.Invoke(damageAmount);
                     }
                     Destroy(GetComponent<BoxCollider2D>());
                     GetComponentInChildren<SpriteRenderer>().enabled = false;

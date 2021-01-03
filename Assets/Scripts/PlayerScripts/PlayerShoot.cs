@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
 
-    [SerializeField] private Transform _firePoint;
-    [SerializeField] GameObject singleShotPreFab;
-    [SerializeField] GameObject doubleShotPreFab;
-    [SerializeField] GameObject tripleShotPreFab;
+    [SerializeField] private Transform firePoint = null;
+    [SerializeField] private GameObject singleShotPreFab = null;
+    [SerializeField] private GameObject doubleShotPreFab = null;
+    [SerializeField] private GameObject tripleShotPreFab = null;
 
     public  float _canFire = -1f;
     public float _fireRate = 0.12f;
@@ -22,6 +20,12 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
+        LaserLevelBounds();
+
+    }
+
+    private void LaserLevelBounds()
+    {
         if (laserNumber < 0)
         {
             laserNumber = 0;
@@ -31,7 +35,6 @@ public class PlayerShoot : MonoBehaviour
         {
             laserNumber = 2;
         }
-        
     }
 
     public void FireLaser()
@@ -43,7 +46,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void ProjectileToFire()
     {
-        var pos = _firePoint.position;
+        var pos = firePoint.position;
         var rot = Quaternion.identity;
 
         switch (laserNumber)

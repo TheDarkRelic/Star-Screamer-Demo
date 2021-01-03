@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public static Action<GameObject> OnEnemyDestroy;
     public int Health { get => _enemyHealth; set => _enemyHealth = value; }
     [SerializeField] private int _enemyHealth = 5;
-    [SerializeField] int scoreAmount;
-    private InstantiateExplosion _explosionFX;
+    [SerializeField] private int scoreAmount;
+    private InstantiateExplosion _explosionFX = null;
 
     private void Awake()
     {

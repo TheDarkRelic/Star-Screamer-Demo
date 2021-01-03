@@ -8,9 +8,9 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) LoadSinglePlayerGame();
+        if (Input.GetButtonDown("Submit")) LoadSinglePlayerGame();
 
-        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+        if (Input.GetButtonDown("Cancel")) Application.Quit();
     }
 
     public void LoadSinglePlayerGame() => SceneManager.LoadScene(1);

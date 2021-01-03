@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1506241858813892905}
-  - component: {fileID: 3049897477232286987}
-  - component: {fileID: 2522562231691432801}
+  - component: {fileID: 2554858399432915109}
+  - component: {fileID: 3459254640457622869}
   m_Layer: 0
   m_Name: Player_Laser
   m_TagString: Laser
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3049897477232286987
+--- !u!114 &2554858399432915109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,8 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _speed: 10
-  laserVolume: 0.3
---- !u!70 &2522562231691432801
+  _damageAmount: 1
+  laserVolume: 0.2
+--- !u!70 &3459254640457622869
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,8 +62,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.000000014901161}
-  m_Size: {x: 0.054847598, y: 0.1958538}
+  m_Offset: {x: 0.000000011175871, y: 0.0006213859}
+  m_Size: {x: 0.05094672, y: 0.19713219}
   m_Direction: 0
 --- !u!1 &5342882001166045076
 GameObject:

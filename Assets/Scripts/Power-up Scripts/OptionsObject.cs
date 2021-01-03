@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class OptionsObject : MonoBehaviour
 {
-    [SerializeField] private GameObject _missilePreFab;
-    private GameObject _missile;
+    [SerializeField] private GameObject _missilePreFab = null;
+    private GameObject _missile = null;
     private float _counter = 1;
-    [SerializeField] Transform _firePointLeft;
-    [SerializeField] Transform _firePointRight;
+    [SerializeField] Transform _firePointLeft = null;
+    [SerializeField] Transform _firePointRight = null;
     public bool isRight;
     public bool isLeft;
 

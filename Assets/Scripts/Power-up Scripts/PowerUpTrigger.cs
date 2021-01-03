@@ -6,7 +6,7 @@ using UnityEngine;
 public class PowerUpTrigger : MonoBehaviour, IScoreable
 {
 
-    [SerializeField] AudioClip _powerupSfx;
+    [SerializeField] AudioClip _powerupSfx = null;
     public float sFxVolume = 0.2f;
 
     private void OnTriggerEnter2D(Collider2D other)

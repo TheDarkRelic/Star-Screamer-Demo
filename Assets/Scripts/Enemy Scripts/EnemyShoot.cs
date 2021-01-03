@@ -6,15 +6,13 @@ public class EnemyShoot : MonoBehaviour
 {
 
     float _canFire = -1.5f;
-    [SerializeField] AudioClip _laserSfx;
-    [SerializeField] GameObject _laserPreFab;
-    [SerializeField] Transform _firePoint;
+    [SerializeField] AudioClip _laserSfx = null;
+    [SerializeField] GameObject _laserPreFab = null;
+    [SerializeField] Transform _firePoint = null;
 
 
-    private void Update()
-    {
-        Shoot();
-    }
+    private void Update() => Shoot();
+
     public void Shoot()
     {
         if (Time.time > _canFire && GetComponent<BoxCollider2D>() != null)

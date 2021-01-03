@@ -7,14 +7,14 @@ public class BossAnimEvent : MonoBehaviour
 {
     public static Action onBossDestroy;
     public static Action onBossEntry;
-    public ParticleSystem _photonLaserParticles;
-    [SerializeField] ParticleSystem _photonMissileParticlesLocal;
-    [SerializeField] ParticleSystem _photonMissileParticlesWorld;
-    [SerializeField] ParticleSystem _photonShieldParticles;
-    [SerializeField] ParticleSystem _photonShieldPointParticle;
-    private CircleCollider2D _shieldCollider;
-    private CircleCollider2D[] _bossCollider;
-    [SerializeField] AudioClip _missileSfx;
+    public ParticleSystem _photonLaserParticles = null;
+    [SerializeField] ParticleSystem _photonMissileParticlesLocal = null;
+    [SerializeField] ParticleSystem _photonMissileParticlesWorld = null;
+    [SerializeField] ParticleSystem _photonShieldParticles = null;
+    [SerializeField] ParticleSystem _photonShieldPointParticle = null;
+    private CircleCollider2D _shieldCollider = null;
+    private CircleCollider2D[] _bossCollider = null;
+    [SerializeField] AudioClip _missileSfx = null;
     [SerializeField] float _missileSfxVolume = 0.5f;
 
     private void Start()
@@ -36,7 +36,7 @@ public class BossAnimEvent : MonoBehaviour
         {
             _photonLaserParticles.Play();
         }
-        
+ 
     }
 
     void FirePhotonMissileLocal()

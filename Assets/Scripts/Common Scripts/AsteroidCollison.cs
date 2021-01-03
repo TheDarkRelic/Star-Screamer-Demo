@@ -36,9 +36,10 @@ public class AsteroidCollison : MonoBehaviour
 
         if (other.gameObject.CompareTag("Laser"))
         {
+            var laser = other.gameObject.GetComponent<Laser>();
             InstantiateHitParticles(other);
             Destroy(other.gameObject);
-            _health--;
+            _health -= laser.damageAmount;
             if (_health < 1)
             {
                 if (_spawner != null && gameObject.CompareTag("Asteroid"))

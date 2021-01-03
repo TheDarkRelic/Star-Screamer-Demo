@@ -6,15 +6,15 @@ using UnityEngine;
 public class BasicEnemyCollider : MonoBehaviour
 {
     public static Action<int> OnTriggerAction;
+    [SerializeField] private int damageAmount;
+    [SerializeField] private GameObject hitParticles = null;
+    public Enemy enemy = null;
 
-    [SerializeField] int _damageAmount;
-    [SerializeField] GameObject _hitParticles;
-    public Enemy enemy;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            OnTriggerAction?.Invoke(_damageAmount);
+            OnTriggerAction?.Invoke(damageAmount);
 
             if (this.CompareTag("Enemy"))
             {
@@ -29,9 +29,10 @@ public class BasicEnemyCollider : MonoBehaviour
         }
         else if (other.CompareTag("Laser"))
         {
-            Instantiate(_hitParticles, other.transform.position, Quaternion.identity);
+            var laser = other.gameObject.GetComponent<Laser>();
+            Instantiate(hitParticles, other.transform.position, Quaternion.identity);
+            GetComponent<IDamageable>().ProcessDamage(laser.damageAmount);
             Destroy(other.gameObject);
-            GetComponent<IDamageable>().ProcessDamage(1);
         }
         else if (other.CompareTag("Missile"))
         {

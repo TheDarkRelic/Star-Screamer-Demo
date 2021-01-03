@@ -5,15 +5,21 @@ using UnityEngine;
 public class PropulsionGFX : MonoBehaviour
 {
 
-    [SerializeField] private Transform _propulsionSprite;
+    [SerializeField] private Transform _propulsionSprite = null;
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        ScaleThrusters();
+
+    }
+
+    private void ScaleThrusters()
+    {
+        if (Input.GetAxis("Vertical") > 0)
         {
             ScaleUpThrust();
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetAxis("Vertical") < 0)
         {
             ScaleDownThrust();
         }
@@ -21,7 +27,6 @@ public class PropulsionGFX : MonoBehaviour
         {
             ThrustScaleDefault();
         }
-
     }
 
     private void ThrustScaleDefault()
