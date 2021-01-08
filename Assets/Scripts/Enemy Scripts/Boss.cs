@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour, IDamageable
     [SerializeField] private float timeBetweenExplosion = 0f;
     [SerializeField] private int scoreAmount = 1500;
     [SerializeField] private int health = 300;
+    [SerializeField] private float destroyTimer;
     public int Health { get => health; set => health = value; }
     public bool isDamageable = false;
     public static bool isAlive = false;
@@ -63,9 +64,9 @@ public class Boss : MonoBehaviour, IDamageable
             Destroy(anim);
             bossAnim._photonLaserParticles.Stop();
             _laserSfxVolume = 0;
-            if (isAlive) StartCoroutine(LoopExplosions());
+            if(isAlive)StartCoroutine(LoopExplosions());
             CallForScore();
-            Destroy(this.gameObject, 2.1f);
+            Destroy(this.gameObject, destroyTimer);
         }
 
     }
@@ -83,12 +84,16 @@ public class Boss : MonoBehaviour, IDamageable
     private IEnumerator LoopExplosions()
     {
         isAlive = false;
-        foreach (var point in expSpawnPoints)
-        { 
-            explosion.InitExplosion(point);
-            Time.timeScale -= .05f;
-            yield return new WaitForSeconds(timeBetweenExplosion);
+        while (true)
+        {
+            foreach (var point in expSpawnPoints)
+            {
+                explosion.InitExplosion(point);
+                if(Time.timeScale > 0.2) Time.timeScale -= .05f;
+                yield return new WaitForSeconds(timeBetweenExplosion);
+            }
         }
+        
     }
 
 

@@ -68,8 +68,8 @@ public class Spawner : MonoBehaviour
             {
                 var randomParent = Random.Range(0, spawnPoints.Length);
                 GameObject newEnemy = (GameObject)Instantiate(enemies[randomAnim], transform.position, Quaternion.identity);
-                newEnemy.transform.parent =spawnPoints[randomParent].transform;
-                yield return new WaitForSeconds(2f);
+                newEnemy.transform.parent = spawnPoints[randomParent].transform;
+                yield return new WaitForSeconds(3f);
             }
             
             yield return new WaitForSeconds(_enemyAnimeWaitTime);

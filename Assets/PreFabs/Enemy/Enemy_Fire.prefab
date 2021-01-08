@@ -116,8 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f72b73e5b69a94b93fef7c1837e570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
   _audioClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
+  _speed: 5
+  damageAmount: 1
+  laserVolume: 0.3
 --- !u!61 &2975924323778375942
 BoxCollider2D:
   m_ObjectHideFlags: 0

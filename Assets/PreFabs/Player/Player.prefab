@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045029945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.08, z: 0}
+  m_LocalPosition: {x: 0, y: 1.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7272245646803182296}
@@ -420,7 +420,7 @@ MonoBehaviour:
   playerBounds: {fileID: 411537554}
   shieldActive: 0
   optionsActive: 0
-  movementActive: 1
+  movementActive: 0
   hitDamage: {fileID: 411537547}
   playerCollider: {fileID: 8400026738087863259}
 --- !u!114 &4533145066540845415
@@ -501,6 +501,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7272245646803182296}
     m_Modifications:
+    - target: {fileID: -8167587212018109038, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 14f7da30d0c11dd47a840fa80c204b95, type: 3}
     - target: {fileID: 1616038233019292807, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -513,9 +517,13 @@ PrefabInstance:
       propertyPath: explosionSfx
       value: 
       objectReference: {fileID: 8300000, guid: 14f7da30d0c11dd47a840fa80c204b95, type: 3}
+    - target: {fileID: 1616038233019292807, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 14f7da30d0c11dd47a840fa80c204b95, type: 3}
     - target: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
       propertyPath: m_Name
-      value: ExplosionFX
+      value: PlayerExplosionFX
       objectReference: {fileID: 0}
     - target: {fileID: 8582810824561778198, guid: 1cb738b026e37554c86f1a0fea341a7a, type: 3}
       propertyPath: m_IsActive

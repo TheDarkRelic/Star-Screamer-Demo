@@ -289,6 +289,13 @@ MonoBehaviour:
   - {fileID: 9142407358940489436}
   - {fileID: 3069831436456746660}
   - {fileID: 3256069774105028810}
+  - {fileID: 8135258943568598150}
+  - {fileID: 7164386862992291563}
+  - {fileID: 8185832106865609752}
+  - {fileID: 1604312604911591820}
+  - {fileID: 9142407358940489436}
+  - {fileID: 3069831436456746660}
+  - {fileID: 3256069774105028810}
   explosion: {fileID: 808285669860954349}
   _hitParticles: {fileID: 7370648582051697921, guid: 4a6c40fd1c2e72944953f2eeb7a72e2b, type: 3}
   _laserSfx: {fileID: 8300000, guid: f4958094f38a35f49b45fed1e88b8373, type: 3}
@@ -297,9 +304,10 @@ MonoBehaviour:
   hitParticleOffset: 0.35
   _laserSfxVolume: 0.5
   shieldTimer: 4
-  timeBetweenExplosion: 0
+  timeBetweenExplosion: 0.15
   scoreAmount: 1500
-  health: 300
+  health: 250
+  destroyTimer: 2.05
   isDamageable: 0
 --- !u!50 &8914871928903067278
 Rigidbody2D:

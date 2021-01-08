@@ -209,7 +209,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press "Enter" to Return to Main Menu
+  m_Text: Press "Start" to Return to Main Menu
 --- !u!222 &62006657
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1553334065
 RectTransform:
   m_ObjectHideFlags: 0
@@ -612,10 +612,10 @@ AudioSource:
   m_GameObject: {fileID: 2036837425}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5221104420162809967, guid: e886434519e0e044daee4bd8f68ae606, type: 2}
   m_audioClip: {fileID: 8300000, guid: 92e85e6a83691e045bed1cdf0037602f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.316
+  m_Volume: 1
   m_Pitch: 0.63
   Loop: 0
   Mute: 0
@@ -874,7 +874,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press "R" to Play Again
+  m_Text: Press "ESC" or "Back" to Quit
 --- !u!1 &737546898231459754
 GameObject:
   m_ObjectHideFlags: 0

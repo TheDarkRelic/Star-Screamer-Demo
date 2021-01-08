@@ -7,12 +7,10 @@ using UnityEngine.SceneManagement;
 public class EndingScreen : MonoBehaviour
 {
     private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R)) LoadSinglePlayerGame();
-
-        if (Input.GetKeyDown(KeyCode.Return)) LoadMainMenu();
-
-        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+    {               
+        if (Input.GetButtonDown("Menu")) LoadMainMenu();
+                     
+        if (Input.GetButtonDown("Cancel")) Application.Quit();
     }
 
     private void LoadMainMenu() => SceneManager.LoadScene(0);

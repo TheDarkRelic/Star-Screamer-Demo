@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class HitDamage : MonoBehaviour, IDamageable
 {
@@ -17,7 +14,7 @@ public class HitDamage : MonoBehaviour, IDamageable
 
     public int Health { get => health; set => health = value; }
 
-    public void ProcessDamage(int damageAmount)
+    public  void ProcessDamage(int damageAmount)
     {
         if (!isDamageable)
         {

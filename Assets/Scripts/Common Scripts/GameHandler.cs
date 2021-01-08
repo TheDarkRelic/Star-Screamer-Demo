@@ -5,88 +5,104 @@ using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
+    public enum InputState { MenuInput, PlayerInput}
+
+    public InputState inputstate;
+
     bool _isGameOver;
     [SerializeField] Image _pauseMenuCanvas= null;
     [SerializeField] UIHandler uiHandler = null;
     Animator _pauseAnimator = null;
-    bool isPaused = false;
+    private Resolution res;
 
     private void Start()
     {
+        inputstate = InputState.PlayerInput;
         SceneManager.GetActiveScene();
+        UnscaledTimePauseAnimator();
+        SetResolution();
+    }
 
+    private void Update()
+    {
+        switch (inputstate)
+        {
+            case InputState.MenuInput:
+
+                if (Input.GetButtonDown("Pause"))
+                    ResumeGame();
+
+                if (Input.GetButtonDown("Back")) LoadMainMenu();
+
+                if (_isGameOver == true && Input.GetButtonDown("Restart")) RestartLevel();
+
+                if (_isGameOver == true && Input.GetButtonDown("Menu")) LoadMainMenu();
+                break;
+
+            case InputState.PlayerInput:
+                if (Input.GetButtonDown("Pause"))
+                    PauseGame();
+                break;
+        }
+        
+    }
+
+    private void UnscaledTimePauseAnimator()
+    {
         _pauseAnimator = GameObject.Find("Pause_Menu_Panel").GetComponent<Animator>();
         if (_pauseAnimator != null)
         {
             _pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
         }
-
-    }
-    private void Update()
-    {
-        if (Input.GetButtonDown("Cancel") && isPaused) LoadMainMenu();
-        if (Input.GetButtonDown("Pause"))
-        {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-                
-            }
-        }
-
-        if (_isGameOver == true && Input.GetButtonDown("Cancel")) RestartLevel();
-
-        if (_isGameOver == true && Input.GetButtonDown("Submit")) LoadMainMenu();
-
-        if (Input.GetButtonDown("Cancel")) Application.Quit();
     }
 
     public void RestartLevel()
     {
-        uiHandler.CheckForHighScore();
         var scene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(scene);
     }
 
+    private void SetResolution()
+    {
+        res = Screen.currentResolution;
+        if (res.refreshRate == 60)
+            QualitySettings.vSyncCount = 1;
+        if (res.refreshRate == 120)
+            QualitySettings.vSyncCount = 2;
+        print(QualitySettings.vSyncCount);
+    }
+
     private void PauseGame()
     {
-        isPaused = true;
         _pauseAnimator.SetBool("isPaused", true);
         _pauseMenuCanvas.gameObject.SetActive(true);
+        inputstate = InputState.MenuInput;
         Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
-        isPaused = false;
+        inputstate = InputState.PlayerInput;
         _pauseMenuCanvas.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 
     public void LoadMainMenu()
     {
-        uiHandler.CheckForHighScore();
+        inputstate = InputState.MenuInput;
         SceneManager.LoadScene("Main_Menu");
     }
 
     public void GameOver()
     {
+        inputstate = InputState.MenuInput;
         _isGameOver = true;
     }
 
-    private void LoadingEndScreen()
+    private void LoadEndingScreen()
     {
-        uiHandler.CheckForHighScore();
+        inputstate = InputState.MenuInput;
         SceneManager.LoadScene(2);
-    }
-
-    public void LoadEndingScreen()
-    {
-        Invoke("LoadingEndScreen", 1);
     }
 
     private void OnEnable()

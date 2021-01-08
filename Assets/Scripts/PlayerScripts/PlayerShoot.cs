@@ -18,23 +18,12 @@ public class PlayerShoot : MonoBehaviour
         laserNumber = 0;
     }
 
-    private void Update()
-    {
-        LaserLevelBounds();
-
-    }
+    private void Update() => LaserLevelBounds();
 
     private void LaserLevelBounds()
     {
-        if (laserNumber < 0)
-        {
-            laserNumber = 0;
-        }
-
-        if (laserNumber > 2)
-        {
-            laserNumber = 2;
-        }
+        if (laserNumber < 0) laserNumber = 0;
+        if (laserNumber > 2) laserNumber = 2;
     }
 
     public void FireLaser()

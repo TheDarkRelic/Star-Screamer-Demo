@@ -82,6 +82,10 @@ PrefabInstance:
       propertyPath: _enemyHealth
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7172191377745710384, guid: bc7d5512338085f428f029a31064c0fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.475
+      objectReference: {fileID: 0}
     - target: {fileID: 7692190462859662667, guid: bc7d5512338085f428f029a31064c0fa, type: 3}
       propertyPath: m_Name
       value: PhantomV1_Left Variant

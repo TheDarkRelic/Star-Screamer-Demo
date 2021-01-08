@@ -5,15 +5,10 @@ using System.Linq;
 
 public class Explosion : MonoBehaviour
 {
-    private List<int> Samples = new List<int>();
-    public AudioClip explosionSfx = null;
-    [SerializeField] private float explosionVolume = 0.3f;
+    private AudioSource aSource;
+    [SerializeField] AudioClip clip;
 
-    void Start() => PlayExplosionAudio(explosionSfx);
+    private void Awake() => aSource = GetComponent<AudioSource>();
 
-    private void PlayExplosionAudio(AudioClip clip)
-    {
-        var cameraPos = Camera.main.transform.position;
-        AudioSource.PlayClipAtPoint(clip, cameraPos, explosionVolume);
-    }
+    void Start() => aSource.PlayOneShot(clip);
 }

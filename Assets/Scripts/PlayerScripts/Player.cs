@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
     public bool movementActive = false;
     public HitDamage hitDamage = null;
     [SerializeField] Collider2D playerCollider = null;
+    [SerializeField] PlayerMovement movementScript = null;
 
     void Awake()
     {
@@ -33,21 +35,13 @@ public class Player : MonoBehaviour
 
     private void ArmLaser()
     {
-        if (Input.GetButton("Fire1"))
-        {
-            if (Time.time > playerShoot._canFire)
-            {
-                playerShoot.FireLaser();
-            }
-        }    
+        if (Input.GetButton("Fire1") && Time.time > playerShoot._canFire) playerShoot.FireLaser();   
     }
 
     public void DestroyPlayer()
     {
         movementActive = false;
-        var movementScript = GetComponent<PlayerMovement>();
         playerCollider.enabled = false;
-        Destroy(movementScript);
         EventsList.OnPlayerDeath?.Invoke();
 
 

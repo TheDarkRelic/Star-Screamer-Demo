@@ -24,6 +24,11 @@ public  class UIHandler : MonoBehaviour, IScoreable
         InitializeScore();
     }
 
+    private void Update()
+    {
+        CheckForHighScore();
+    }
+
     private void InitializeScore()
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -48,18 +53,17 @@ public  class UIHandler : MonoBehaviour, IScoreable
         scoreText.text = "Score: " + scoreTotal;
     }
 
-    private IEnumerator ProcessHighScore()
+    private void ProcessHighScore()
     {
-        if (score <= highScore) yield break;
+        if (score <= highScore)
+            return;
         highScore = score;
         SetHighScore();
-        yield return new WaitForSeconds(2);
-
     }
 
     public void CheckForHighScore()
     {
-        StartCoroutine(ProcessHighScore());
+        ProcessHighScore();
     }
 
     private void SetHighScore()
@@ -117,7 +121,6 @@ public  class UIHandler : MonoBehaviour, IScoreable
         StartCoroutine(FlashReadyEnabled());
         HitDamage.onHitAction += UpdateLives;
         EventsList.OnScoreAction += Score;
-        EventsList.OnPlayerDeath += CheckForHighScore;
         EventsList.OnHealthPickup += UpdateLives;
     }
 
@@ -125,7 +128,6 @@ public  class UIHandler : MonoBehaviour, IScoreable
     {
         HitDamage.onHitAction -= UpdateLives;
         EventsList.OnScoreAction -= Score;
-        EventsList.OnPlayerDeath -= CheckForHighScore;
         EventsList.OnHealthPickup -= UpdateLives;
     }
 
