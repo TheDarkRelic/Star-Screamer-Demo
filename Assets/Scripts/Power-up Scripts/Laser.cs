@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    [SerializeField] AudioClip _audioClip = null;
+    [SerializeField] AudioSource aSource;
     [SerializeField] float _speed = 8.0f;
     public int damageAmount;
-    public float laserVolume = 0.2f;
     private bool _isEnemyLaser = false;
     private HitDamage _hitDamage = null;
     private Player _player = null;
@@ -16,7 +15,7 @@ public class Laser : MonoBehaviour
     void Start()
     {
         _hitDamage = FindObjectOfType<HitDamage>();
-        AudioSource.PlayClipAtPoint(_audioClip, Camera.main.transform.position, laserVolume);
+        aSource.Play();
     }
     void Update()
     {

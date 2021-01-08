@@ -457,6 +457,30 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 127.6485
       objectReference: {fileID: 0}
+    - target: {fileID: 2654752524507560407, guid: 3de51566b642e2049a83113cd8358433, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654752524507560407, guid: 3de51566b642e2049a83113cd8358433, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654752524507560407, guid: 3de51566b642e2049a83113cd8358433, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654752524507560407, guid: 3de51566b642e2049a83113cd8358433, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654752524507560407, guid: 3de51566b642e2049a83113cd8358433, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654752524507560407, guid: 3de51566b642e2049a83113cd8358433, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1334
+      objectReference: {fileID: 0}
     - target: {fileID: 2654752526358453467, guid: 3de51566b642e2049a83113cd8358433, type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas

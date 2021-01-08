@@ -6,8 +6,8 @@ using UnityEngine;
 public class PowerUpTrigger : MonoBehaviour, IScoreable
 {
 
-    [SerializeField] AudioClip _powerupSfx = null;
-    public float sFxVolume = 0.2f;
+    [SerializeField] AudioSource aSource;
+    [SerializeField] AudioClip clip;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,8 +18,12 @@ public class PowerUpTrigger : MonoBehaviour, IScoreable
         {
             powerUp.ActivatePowerUp();
             Score(100);
-            AudioSource.PlayClipAtPoint(_powerupSfx, Camera.main.transform.position, sFxVolume);
-            Destroy(this.gameObject);
+            aSource.Play();
+            var sprite = GetComponentInChildren<SpriteRenderer>();
+            var collider = GetComponent<CircleCollider2D>();
+            sprite.gameObject.SetActive(false);
+            collider.enabled = false;
+            Destroy(this.gameObject, 1);
         }
 
         if (other.CompareTag("EnemyLaser"))
