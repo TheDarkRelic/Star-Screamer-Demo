@@ -7,11 +7,10 @@ public class Boss : MonoBehaviour, IDamageable
     public GameObject[] expSpawnPoints = new GameObject[5];
     [SerializeField] private InstantiateExplosion explosion = null;
     [SerializeField] private GameObject _hitParticles = null;
-    [SerializeField] private AudioClip _laserSfx = null;
+    [SerializeField] private AudioSource aSource;
     [SerializeField] private BossAnimEvent bossAnim = null;
     [SerializeField] private SpriteRenderer bossSprite = null;
     [SerializeField] private float hitParticleOffset = 0.35f;
-    [SerializeField] private float _laserSfxVolume = 0.5f;
     [SerializeField] private float shieldTimer = 4f;
     [SerializeField] private float timeBetweenExplosion = 0f;
     [SerializeField] private int scoreAmount = 1500;
@@ -39,7 +38,14 @@ public class Boss : MonoBehaviour, IDamageable
         {
             var laser = other.gameObject.GetComponent<Laser>();
             Instantiate(_hitParticles, new Vector2(x, y), Quaternion.identity);
-            Destroy(other.gameObject);
+            var capCollider = laser.GetComponent<CapsuleCollider2D>();
+            var sprites = laser.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var sprite in sprites)
+            {
+                sprite.enabled = false;
+            }
+            capCollider.enabled = false;
+            Destroy(other.gameObject, .3f);
             if (isDamageable) ProcessDamage(laser.damageAmount);
         }
         
@@ -48,11 +54,6 @@ public class Boss : MonoBehaviour, IDamageable
             var damage = other.gameObject.GetComponent<HitDamage>();
             if (damage != null) damage.ProcessDamage(damage.health);
         }
-
-        /*if (!other.CompareTag("Missile"))
-        return;
-    Destroy(other.gameObject);
-    if (isDamageable) ProcessDamage(2);*/
     }
 
     public void ProcessDamage(int damageAmount)
@@ -63,7 +64,6 @@ public class Boss : MonoBehaviour, IDamageable
             var anim = GetComponent<Animator>();
             Destroy(anim);
             bossAnim._photonLaserParticles.Stop();
-            _laserSfxVolume = 0;
             if(isAlive)StartCoroutine(LoopExplosions());
             CallForScore();
             Destroy(this.gameObject, destroyTimer);
@@ -111,6 +111,6 @@ public class Boss : MonoBehaviour, IDamageable
         bossSprite.enabled = false;
     }
 
-    public void LaserCanonSfx() => AudioSource.PlayClipAtPoint(_laserSfx, Camera.main.transform.position, _laserSfxVolume);
+    public void LaserCanonSfx() => aSource.Play();
 
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Warning : MonoBehaviour
 {
-    [SerializeField] AudioClip warningSfx = null;
-    [SerializeField] float volume = .5f;
+    [SerializeField] AudioSource aSource;
+
 
     private void PlayWarningSound()
     {
-        AudioSource.PlayClipAtPoint(warningSfx, Camera.main.transform.position, volume);
+        aSource.Play();
     }
 }

@@ -16,14 +16,14 @@ public class BasicEnemyCollider : MonoBehaviour
         {
             OnTriggerAction?.Invoke(damageAmount);
 
-            if (this.CompareTag("Enemy"))
+            if (CompareTag("Enemy"))
             {
                 enemy.DestroyEnemy();
             }
 
-            if (this.CompareTag("Bits"))
+            if (CompareTag("Bits"))
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
 
         }
@@ -32,7 +32,14 @@ public class BasicEnemyCollider : MonoBehaviour
             var laser = other.gameObject.GetComponent<Laser>();
             Instantiate(hitParticles, other.transform.position, Quaternion.identity);
             GetComponent<IDamageable>().ProcessDamage(laser.damageAmount);
-            Destroy(other.gameObject);
+            var capCollider = laser.GetComponent<CapsuleCollider2D>();
+            var sprites = laser.GetComponentsInChildren<SpriteRenderer>();
+            foreach(var sprite in sprites)
+            {
+                sprite.enabled = false;
+            }
+            capCollider.enabled = false;
+            Destroy(other.gameObject, .3f);
         }
         else if (other.CompareTag("Missile"))
         {

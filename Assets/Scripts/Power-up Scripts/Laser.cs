@@ -47,7 +47,7 @@ public class Laser : MonoBehaviour
             {
                 Destroy(transform.parent.gameObject);
             }
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -76,7 +76,7 @@ public class Laser : MonoBehaviour
                     }
                     Destroy(GetComponent<BoxCollider2D>());
                     GetComponentInChildren<SpriteRenderer>().enabled = false;
-                    Destroy(this.gameObject, 0.25f);
+                    Destroy(gameObject, 0.25f);
                 }
                 
             }

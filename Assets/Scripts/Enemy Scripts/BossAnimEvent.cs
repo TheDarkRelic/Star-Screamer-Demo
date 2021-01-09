@@ -14,8 +14,7 @@ public class BossAnimEvent : MonoBehaviour
     [SerializeField] ParticleSystem _photonShieldPointParticle = null;
     private CircleCollider2D _shieldCollider = null;
     private CircleCollider2D[] _bossCollider = null;
-    [SerializeField] AudioClip _missileSfx = null;
-    [SerializeField] float _missileSfxVolume = 0.5f;
+    [SerializeField] AudioSource aSource;
 
     private void Start()
     {
@@ -59,7 +58,7 @@ public class BossAnimEvent : MonoBehaviour
         
     }
 
-    private void PhotonMissileSfx() => AudioSource.PlayClipAtPoint(_missileSfx, Camera.main.transform.position, _missileSfxVolume);
+    private void PhotonMissileSfx() => aSource.Play();
     private IEnumerator DoubleMissileSfx()
     {
         if (Boss.isAlive)

@@ -16,7 +16,7 @@ public class ParticleCollider2D : MonoBehaviour
             }
             if (this.gameObject.name == "Boss1_Bolt")
             {
-                hitDamage.ProcessDamage(3);
+                hitDamage.ProcessDamage(1);
             }
             
         }

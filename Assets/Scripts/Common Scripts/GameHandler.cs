@@ -25,6 +25,7 @@ public class GameHandler : MonoBehaviour
 
     private void Update()
     {
+        if (_isGameOver) inputstate = InputState.MenuInput;
         switch (inputstate)
         {
             case InputState.MenuInput:
@@ -35,8 +36,6 @@ public class GameHandler : MonoBehaviour
                 if (Input.GetButtonDown("Back")) LoadMainMenu();
 
                 if (_isGameOver == true && Input.GetButtonDown("Restart")) RestartLevel();
-
-                if (_isGameOver == true && Input.GetButtonDown("Menu")) LoadMainMenu();
                 break;
 
             case InputState.PlayerInput:
@@ -90,7 +89,7 @@ public class GameHandler : MonoBehaviour
     public void LoadMainMenu()
     {
         inputstate = InputState.MenuInput;
-        SceneManager.LoadScene("Main_Menu");
+        SceneManager.LoadScene(0);
     }
 
     public void GameOver()
@@ -101,6 +100,12 @@ public class GameHandler : MonoBehaviour
 
     private void LoadEndingScreen()
     {
+        StartCoroutine(LoadingEndScreen());
+    }
+
+    private IEnumerator LoadingEndScreen()
+    {
+        yield return new WaitForSeconds(1.5f);
         inputstate = InputState.MenuInput;
         SceneManager.LoadScene(2);
     }

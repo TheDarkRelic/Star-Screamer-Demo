@@ -38,7 +38,14 @@ public class AsteroidCollison : MonoBehaviour
         {
             var laser = other.gameObject.GetComponent<Laser>();
             InstantiateHitParticles(other);
-            Destroy(other.gameObject);
+            var capCollider = laser.GetComponent<CapsuleCollider2D>();
+            var sprites = laser.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var sprite in sprites)
+            {
+                sprite.enabled = false;
+            }
+            capCollider.enabled = false;
+            Destroy(other.gameObject, .3f);
             _health -= laser.damageAmount;
             if (_health < 1)
             {
