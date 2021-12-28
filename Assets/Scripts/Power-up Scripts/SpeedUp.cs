@@ -9,7 +9,7 @@ public class SpeedUp : MonoBehaviour, IPowerup
 
     void Awake()
     {
-        _playerMovement = GameObject.Find("Player_1").GetComponent<PlayerMovement>();
+        _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     public int AdjustAmount => speedPlus;

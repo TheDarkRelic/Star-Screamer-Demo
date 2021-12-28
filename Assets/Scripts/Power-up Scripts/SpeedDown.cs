@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedDown :  MonoBehaviour, IPowerup
@@ -9,7 +7,7 @@ public class SpeedDown :  MonoBehaviour, IPowerup
 
     void Awake()
     {
-        _playerMovement = GameObject.Find("Player_1").GetComponent<PlayerMovement>();
+        _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     public int AdjustAmount => speedMinus;

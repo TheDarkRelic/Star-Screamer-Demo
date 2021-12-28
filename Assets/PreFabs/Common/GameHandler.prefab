@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4bd3ddada71384d80157392996a851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inoutstate: 0
+  inputstate: 0
   _pauseMenuCanvas: {fileID: 0}
   uiHandler: {fileID: 0}
 --- !u!1 &1823684922190163839

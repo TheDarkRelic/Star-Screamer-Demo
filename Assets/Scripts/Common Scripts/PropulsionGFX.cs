@@ -6,6 +6,18 @@ public class PropulsionGFX : MonoBehaviour
 {
 
     [SerializeField] private Transform _propulsionSprite = null;
+    private Vector3 normalScale;
+
+    public PropulsionGFX(Transform propulsionSprite, Vector3 normalScale)
+    {
+        _propulsionSprite = propulsionSprite;
+        this.normalScale = normalScale;
+    }
+
+    private void Awake()
+    {
+        normalScale = _propulsionSprite.localScale.normalized;
+    }
 
     void Update()
     {
@@ -30,17 +42,17 @@ public class PropulsionGFX : MonoBehaviour
 
     private void ThrustScaleDefault()
     {
-        _propulsionSprite.localScale = new Vector3(0.25f, 0.31f);
+        normalScale = Vector3.one;
     }
 
     private void ScaleDownThrust()
     {
-        _propulsionSprite.localScale = new Vector3(0.2f, 0.15f);
+        normalScale = new Vector3(.5f, .5f, .5f);
     }
 
     private void ScaleUpThrust()
     {
-        _propulsionSprite.localScale = new Vector3(0.3f, 0.6f);
+        normalScale = new Vector3(1.3f, 1.3f, 1.3f);
     }
 
 }

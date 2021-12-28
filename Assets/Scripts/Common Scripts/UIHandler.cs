@@ -33,7 +33,7 @@ public  class UIHandler : MonoBehaviour, IScoreable
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         scoreText.text = "Score: " + 0;
-        highScoreText.text = "High Score:" + highScore;
+        highScoreText.text = $"High Score: {highScore}";
     }
 
     private void SetGameOverText()

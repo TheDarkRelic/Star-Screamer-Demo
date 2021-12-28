@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +9,6 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMove = null;
     public SetBounds playerBounds = null;
     public bool shieldActive = false;
-    public bool optionsActive = false;
     public bool movementActive = false;
     public HitDamage hitDamage = null;
     [SerializeField] Collider2D playerCollider = null;
@@ -20,7 +18,6 @@ public class Player : MonoBehaviour
     {
         movementActive = true;
         shieldActive = false;
-        optionsActive = false;
     }
 
     void FixedUpdate()

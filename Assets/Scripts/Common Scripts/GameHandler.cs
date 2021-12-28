@@ -14,9 +14,13 @@ public class GameHandler : MonoBehaviour
     [SerializeField] UIHandler uiHandler = null;
     Animator _pauseAnimator = null;
     private Resolution res;
+    private InputState playerInput;
+    private InputState menuInput;
 
     private void Start()
     {
+        playerInput = InputState.PlayerInput;
+        menuInput = InputState.MenuInput;
         inputstate = InputState.PlayerInput;
         SceneManager.GetActiveScene();
         UnscaledTimePauseAnimator();
@@ -32,10 +36,6 @@ public class GameHandler : MonoBehaviour
 
                 if (Input.GetButtonDown("Pause"))
                     ResumeGame();
-
-                if (Input.GetButtonDown("Back")) LoadMainMenu();
-
-                if (_isGameOver == true && Input.GetButtonDown("Restart")) RestartLevel();
                 break;
 
             case InputState.PlayerInput:
@@ -68,22 +68,28 @@ public class GameHandler : MonoBehaviour
             QualitySettings.vSyncCount = 1;
         if (res.refreshRate == 120)
             QualitySettings.vSyncCount = 2;
-        print(QualitySettings.vSyncCount);
     }
 
     private void PauseGame()
     {
-        _pauseAnimator.SetBool("isPaused", true);
         _pauseMenuCanvas.gameObject.SetActive(true);
+        _pauseAnimator.SetBool("isPaused", true);
         inputstate = InputState.MenuInput;
         Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
-        inputstate = InputState.PlayerInput;
         _pauseMenuCanvas.gameObject.SetActive(false);
         Time.timeScale = 1;
+        StartCoroutine(ResumeState(playerInput));
+        
+    }
+
+    private IEnumerator ResumeState(InputState state)
+    {
+        yield return new WaitForSeconds(.5f);
+        inputstate = state;
     }
 
     public void LoadMainMenu()

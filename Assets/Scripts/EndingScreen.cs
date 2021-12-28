@@ -13,7 +13,7 @@ public class EndingScreen : MonoBehaviour
         if (Input.GetButtonDown("Cancel")) Application.Quit();
     }
 
-    private void LoadMainMenu() => SceneManager.LoadScene(0);
+    public void LoadMainMenu() => SceneManager.LoadScene(0);
 
     public void LoadSinglePlayerGame() => SceneManager.LoadScene(1);
 }
